@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'ls'
+                sh 'npm install'
+                sh 'echo N | ng analytics off'
+                sh 'ng build'
+                sh 'ls'
+                sh 'cd dist && ls'
+                sh 'cd dist/Experiences-showroom/browser && ls'
+            }
+        }
+        stage('S3 Upload') {
+            steps {
+                withAWS(region: 'us-east-1', credentials: '3cc1becb-a276-40c8-80af-073e8261c6b8') {
+                    sh 'ls -la'
+                    sh 'aws s3 cp dist/Experiences-showroom/browser/. s3://bucketprimario/ --recursive'
+                }
+            }
+        }
+    }
+}

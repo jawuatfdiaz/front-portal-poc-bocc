@@ -1,0 +1,92 @@
+.deplotmentModal {
+  // font-family: var(--font);
+
+  .modal-dialog {
+    .modal-body {
+      overflow: hidden;
+      overflow-y: scroll;
+      max-height: 27rem;
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+
+    .efimieral {
+      position: relative;
+      div {
+        position: absolute;
+        right: 0;
+        span {
+          font-weight: 600;
+          color: var(--primary);
+          border-radius: 8px;
+          padding: 0 5px;
+          cursor: pointer;
+          font-size: 19px;
+        }
+
+        span:hover {
+          background-color: #f6f6f6;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    .parameters-container {
+      // border: 1px solid #e0e0e0;
+      // border-radius: 8px;
+      // margin-left: 0.7em;
+      // margin-right: 0.7em;
+      // padding-top: 0.5em;
+      // margin-bottom: 2em;
+      // margin-top: 20px;
+      padding-bottom: 1em;
+      .table {
+        margin-bottom: 0;
+        font-size: 14px;
+      }
+
+      button {
+        background-color: transparent;
+        color: var(--primary);
+        font-family: var(--font);
+        border: 1px solid var(--primary);
+        margin-right: 1em;
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .cont-options {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        align-items: flex-end;
+        justify-content: space-around;
+      }
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+    .sendRequest {
+      background: var(--primary);
+      font-family: var(--font);
+      color: var(--white);
+      border: 0;
+      border-radius: 8px;
+      padding: 7px 11px;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .row {
+      &.no-padding {
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+
+.modal-footer {
+  padding: 12px 25px;
+  gap: 10px;
+}

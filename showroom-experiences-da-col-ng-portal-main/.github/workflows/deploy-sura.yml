@@ -1,0 +1,56 @@
+name: Deploy to SURA
+
+on:
+  workflow_dispatch:
+    inputs:
+      values:
+        description: JSON with parameters
+        type: string
+        default: "{}"
+        required: true
+
+env:
+  PROJECT_NAME: pocs-ntt
+  RESOURCE_GROUP: rg-portaliac-global-persistence-lab-001
+  STORAGE_ACCOUNT_NAME: stportaliaclab88ec
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Use Node 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: "16.x"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build:sura
+
+      - name: "Az login"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_SURA_CREDENTIALS }}
+
+      - name: Upload to blob storage
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az storage blob upload-batch --account-name $STORAGE_ACCOUNT_NAME --auth-mode key -d '$web' -s ./dist/$PROJECT_NAME --overwrite
+
+      - name: logout
+        run: |
+          az logout
+        if: always()

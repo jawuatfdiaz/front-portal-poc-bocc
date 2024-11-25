@@ -1,0 +1,120 @@
+.inbox-view {
+  // height: 100%;
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 10px;
+  h1 {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 1.5em;
+    padding-top: 2%;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .cont-inbox {
+    margin-top: 20px;
+    // height: 86%;
+    position: relative;
+    .card {
+      height: 100%;
+      // .card-body {
+      // overflow: hidden;
+      // overflow-y: scroll;
+      // max-height: 100vh;
+      // max-height: 74vh;
+      // max-height: 58vh;
+    }
+    .action-container {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      color: var(--primary);
+      justify-content: center;
+      button {
+        display: flex;
+        background: transparent;
+        border: 0;
+        color: var(--primary);
+        cursor: pointer;
+      }
+    }
+
+    .resource-approver-view {
+      .approver-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        // align-items: flex-end;
+        flex-direction: row;
+        margin-bottom: 2em;
+
+        .title {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          h5 {
+            font-weight: 600;
+            margin: 0;
+          }
+          span {
+            cursor: pointer;
+            padding: 3px;
+          }
+          span:hover {
+            background-color: #f6f6f6;
+            border-radius: 50%;
+            padding: 3px;
+          }
+        }
+      }
+      .actions {
+        button {
+          margin-right: 10px;
+          font-family: var(--font);
+          font-size: 14px;
+          width: 80px;
+          background: transparent;
+          font-weight: 500;
+          &.back {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 4px;
+          }
+          &.deny {
+            border: 1px solid var(--primary);
+            color: var(--white);
+            background: var(--primary);
+            border-radius: 4px;
+          }
+          &.approval {
+            border: 1px solid #00a094;
+            color: var(--white);
+            background: #00a094;
+            border-radius: 4px;
+          }
+        }
+      }
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      // align-items: flex-end;
+      align-items: center;
+      .views {
+        .form-group {
+          display: flex;
+          flex-direction: row;
+          align-items: flex-end;
+          label {
+            margin-right: 9px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+<div
+  *ngIf="control?.invalid && (control?.dirty || control?.touched)"
+  class="text-danger"
+>
+  <span
+    *ngIf="
+      control.errors && !control.errors.pattern && !control.errors.uniqueKey
+    "
+  >
+    This field is required
+  </span>
+  <span *ngIf="control.errors?.uniqueKey && !control.errors.pattern">
+    This key already exists
+  </span>
+  <span *ngIf="control.errors?.pattern">This format is invalid</span>
+</div>

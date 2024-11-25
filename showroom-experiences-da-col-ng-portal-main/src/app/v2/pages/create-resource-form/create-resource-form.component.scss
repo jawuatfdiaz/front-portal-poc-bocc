@@ -1,0 +1,136 @@
+.container-resource-form {
+  // height: 100%;
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 10px;
+  h1 {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 1.5em;
+    padding-top: 2%;
+    margin-bottom: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .cont-resource-form {
+    margin-top: 20px;
+    height: 86%;
+    position: relative;
+    .card {
+      height: 100%;
+      .card-body {
+        // overflow: hidden;
+        // overflow-y: scroll;
+
+        .row {
+          &.pd-btn {
+            padding-bottom: 20px;
+          }
+        }
+      }
+    }
+    .resource-cont {
+      .next-button {
+        background-color: var(--primary);
+        color: var(--white);
+        font-family: var(--font);
+        &.fix {
+          border: 0;
+          height: 35px;
+          border-radius: 5px;
+          img {
+            height: 80%;
+            padding: 0px 30px;
+          }
+        }
+      }
+      .back-button {
+        background-color: transparent;
+        color: var(--primary);
+        font-family: var(--font);
+        border: 1px solid var(--primary);
+        margin-right: 1em;
+      }
+      .parameters-container {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        margin-left: 0.7em;
+        margin-right: 0.7em;
+        padding-top: 0.5em;
+        padding-bottom: 1em;
+        // margin-bottom: 2em;
+
+        button {
+          background-color: transparent;
+          color: var(--primary);
+          font-family: var(--font);
+          border: 1px solid var(--primary);
+          margin-right: 1em;
+          font-size: 13px;
+          font-weight: 500;
+          border-radius: 4px;
+        }
+
+        .cont-options {
+          button {
+            display: flex;
+            padding: 0;
+            border: 0;
+            background: transparent;
+          }
+        }
+      }
+
+      .mg-top {
+        margin-top: 5px;
+      }
+
+      .btn-footer {
+        display: flex;
+        align-items: center;
+
+        div {
+          margin-left: 1rem;
+        }
+      }
+    }
+    .cont-options {
+      height: 75% !important;
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+      align-items: flex-end;
+      justify-content: space-around;
+      align-items: center;
+      button {
+        display: flex;
+        border: 0;
+        background: transparent;
+        color: var(--primary);
+      }
+    }
+
+    .add-link {
+      background-color: transparent;
+      color: var(--primary);
+      font-family: var(--font);
+      border: 1px solid var(--primary);
+      margin-right: 1em;
+      font-size: 13px;
+      // margin-bottom: 2em;
+      font-weight: 500;
+      border-radius: 4px;
+    }
+  }
+}
+
+.input-height {
+  height: 12px
+}
+
+.pd-top {
+  padding-top: 32px
+}

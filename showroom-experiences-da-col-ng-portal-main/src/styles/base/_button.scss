@@ -1,0 +1,59 @@
+.btn-primary {
+  background: var(--primary);
+  font-family: var(--font);
+  color: var(--white);
+  border: 0;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  padding: 8px 11px;
+
+  &:hover {
+    background-image: var(--gradient-primary);
+  }
+
+  &.btn-whidth {
+    width: 100%;
+  }
+}
+
+.btn-primary:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+
+  &:hover {
+    background-image: none;
+  }
+}
+
+.btn-back {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  font-family: var(--font);
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 8px 15px;
+  background: transparent;
+  // &:hover {
+  //   background-image: var(--gradient-primary);
+  // }
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  background-color: var(--primary) !important;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus {
+  box-shadow: none !important;
+}
+
+.next-button-wrapper {
+  display: inline-block;
+}
+
+.next-button-wrapper:has(button:disabled) {
+  opacity: 0.8;
+  cursor: not-allowed;
+}

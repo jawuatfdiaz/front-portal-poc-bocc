@@ -1,0 +1,50 @@
+$smart-navy: #08122e;
+$human-blue: #6785c1;
+$delightful-yellow: #e6b600;
+$smart-blue: #0080b1;
+$dynamic-red: #bc4328;
+$text-gray: #404041;
+$dynamic-green: #83b254;
+$color_white: #fff;
+$primary: #11998e;
+$secondary: #38ef7d;
+
+input[type="file"] {
+  font-size: 18px;
+  width: 100%;
+  max-width: 100%;
+  color: #444;
+  padding: 5px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #555;
+}
+
+input[type="file"]::file-selector-button {
+  background: #fff;
+  transition: background 0.2s ease-in-out;
+  border-radius: 10px;
+  max-width: 200px;
+  color: $text-gray;
+  font-size: 18px;
+  padding: 5px;
+  border: 2px solid $smart-blue;
+  margin: 20px 0.5rem;
+
+  b:hover {
+    background-color: $smart-blue;
+  }
+
+  &:hover {
+    background-color: $smart-blue;
+    color: white;
+  }
+}
+
+content-popup {
+  padding-left: 38%;
+  padding-right: 38%;
+}
+
+/*  FIN DROPZONE */
+/* --------------------------------------------------------------------------------- */

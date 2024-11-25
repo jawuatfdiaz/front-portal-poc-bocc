@@ -1,0 +1,31 @@
+
+<div class="container-carousel">
+    <div class="row">
+        <div class="col-md-6 title-dt">
+            <h3 style="color:white">We Are Digital Technology</h3>
+        </div>
+        <div class="col-md-5" style="display: flex;justify-content: flex-end;">
+            <div class="btn-group">
+                <a class="previous round" (click)="slide('left')">←</a>
+                <a class="next round"  (click)="slide('right')">→</a>
+            </div>
+        </div>
+    </div>
+    
+    <section class="boxesContainer" #widgetsContent>
+        <div class="flip" *ngFor="let card of dataFountadions">
+            <div class="front" style="background-image: url({{card.image}})">
+                <h1 class="text-shadow">{{card.title}}</h1>
+            </div>
+            <div class="back">
+                <h3 class="text-desc">{{card.description}}</h3>
+                <p class="text-expertises">Our areas of Expertise:</p>
+                <div class="row">
+                    <div class="col-md-6" *ngFor="let expertice of card.areas">
+                        <p class="expertise-text">{{expertice.value}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

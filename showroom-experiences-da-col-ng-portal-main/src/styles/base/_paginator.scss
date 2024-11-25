@@ -1,0 +1,20 @@
+.mat-mdc-paginator {
+  border-radius: 6px;
+  .mat-mdc-paginator-range-actions {
+    margin: 0px 15px;
+  }
+}
+
+.mat-mdc-paginator-container {
+  box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.10);
+  z-index: 1;
+}
+
+// ::ng-deep
+//   .mat-mdc-paginator
+//   .mat-mdc-paginator-outer-container
+//   .mat-mdc-paginator-page-size {
+//   display: none;
+// }
+
+

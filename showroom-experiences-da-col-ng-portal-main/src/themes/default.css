@@ -1,0 +1,17 @@
+:root {
+    --blue: #0082c4;
+    --yellow: #ffe01c;
+    --orange: #f8991d;
+  
+    --gris2: #bcbec0;
+  
+    --primary: #08122e;
+    --secondary: #f5f7f9;
+    --white: #eceeed;
+    --black: #000000;
+
+    --gradient-primary: linear-gradient(to right, var(--primary), #182856);
+
+    --height-logo: 100%;
+  }
+  

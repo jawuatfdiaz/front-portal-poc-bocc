@@ -1,0 +1,178 @@
+<div class="cont-catalogue">
+  <div class="card">
+    <div class="card-header">
+      <div class="result">Results: {{ catalogueResource.length }}</div>
+      <div class="views">
+        <!-- <button
+              [ngClass]="{ active: activeView === grid }"
+              (click)="setActiveView(grid)"
+              data-bs-toggle="tooltip"
+              data-bs-title="Default tooltip"
+            >
+              <span class="material-symbols-outlined"> grid_view </span>
+            </button> -->
+        <button
+          [ngClass]="{ active: activeView === list }"
+          (click)="setActiveView(list)"
+          data-bs-toggle="tooltip"
+          data-bs-title="Default tooltip"
+        >
+          <span class="material-symbols-outlined"> view_list </span>
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <!-- <div class="resource-cont grid-view" *ngIf="activeView === grid">
+              <ng-container *ngTemplateOutlet="alert"></ng-container>
+              <div
+                class="resource"
+                *ngFor="let resource of catalogueResource; let i = index"
+              >
+                <div class="cont-img">
+                  <img
+                    src="../../../../assets/images/resource-default.png"
+                    alt=""
+                  />
+                </div>
+                <div class="container-info">
+                  <div class="info-header">
+                    <div class="name">
+                      <h3>
+                        {{ resource.name }}
+                      </h3>
+                      <span
+                        class="owner"
+                        *ngFor="
+                          let relatedUser of resource.relatedParty;
+                          let j = index
+                        "
+                        >{{
+                          resource.relatedParty[j].role === "OWNER"
+                            ? relatedUser.name
+                            : ""
+                        }}</span
+                      >
+                    </div>
+                    <div class="status">{{ resource.status }}</div>
+                  </div>
+    
+                  <div class="cont-desc">
+                    <p>
+                      {{ resource.description }}
+                    </p>
+                  </div>
+    
+                  <div class="container-butt">
+                    <button (click)="viewResource(resource.commonVersionId)">
+                      more information
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+      <div class="resource-cont list-view" *ngIf="activeView === list">
+        <table class="table table-hover" aria-describedby="list of request ">
+          <thead>
+            <tr>
+              <th
+                *ngFor="let colum of columns_table"
+                scope="col"
+                [ngStyle]="{ width: colum.width }"
+              >
+                <ng-container *ngIf="!colum?.icon"></ng-container>
+                {{ colum.item }}
+
+                <div *ngIf="colum?.icon">
+                  <span class="material-symbols-outlined bg-gray">
+                    {{ colum.icon }}
+                  </span>
+                </div>
+              </th>
+            </tr>
+            <!-- <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Related Party</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">State</th>
+                      <th scope="col">More information</th>
+                    </tr> -->
+          </thead>
+          <tbody>
+            <tr *ngFor="let resource of catalogueResource; let i = index">
+              <td>
+                <span class="router" (click)="viewResource(resource.commonVersionId)">
+                  {{  resource.name }}
+                </span>
+                <!-- <a [href]="routerNavigate + resource.commonVersionId">
+                  {{ resource.name }}
+                </a> -->
+              </td>
+              <td>
+                <span
+                  *ngFor="
+                    let relatedUser of resource.relatedParty;
+                    let j = index
+                  "
+                  >{{
+                    resource.relatedParty[j].role === "OWNER"
+                      ? relatedUser.name
+                      : ""
+                  }}</span
+                >
+              </td>
+              <td>{{ resource.type }}</td>
+              <td>{{ resource.description }}</td>
+              <td>{{ resource.status | titlecase }}</td>
+              <td>
+                <div class="action-container">
+                  <ng-container *ngIf="resource.enable; else noActive">
+                    <span class="material-symbols-outlined bg-green"
+                      >check_circle</span
+                    >
+                  </ng-container>
+                  <ng-template #noActive>
+                    <span class="material-symbols-outlined bg-gray">
+                      circle
+                    </span>
+                  </ng-template>
+
+                  <!-- <span class="material-symbols-outlined"> info </span> -->
+                </div>
+                <!-- <div class="action-container">
+                        <button (click)="viewResource(resource.commonVersionId)">
+                          <span class="material-symbols-outlined"> info </span>
+                        </button>
+                      </div> -->
+              </td>
+              <td>{{ resource.enable ? "Yes" : "No" }}</td>
+              <!-- <td>
+                <div class="action-container">
+                  <span class="material-symbols-outlined"> delete </span>
+                </div>
+              </td> -->
+            </tr>
+          </tbody>
+        </table>
+        <ng-container *ngTemplateOutlet="alert"></ng-container>
+      </div>
+    </div>
+
+    <ng-container *ngIf="catalogueResource.length">
+      <mat-paginator
+        [length]="total"
+        [pageSize]="8"
+        [showFirstLastButtons]="true"
+        [hidePageSize]="true"
+        (page)="onPageChange($event)"
+      >
+      </mat-paginator>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #alert>
+  <div class="style-alert" *ngIf="!catalogueResource.length">
+    No data available!
+  </div>
+</ng-template>

@@ -1,0 +1,13 @@
+.container-main-app {
+  display: flex;
+  flex-direction: row;
+  align-content: flex-start;
+  justify-content: flex-start;
+  align-items: flex-start;
+  .app {
+    background: var(--white);
+    width: 100%;
+    height: calc(100vh - 56px);
+    overflow: auto;
+  }
+}

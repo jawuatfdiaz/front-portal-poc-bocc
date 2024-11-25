@@ -1,0 +1,16 @@
+:root {
+  --blue: #0082c4;
+  --yellow: #ffe01c;
+  --orange: #f8991d;
+
+  --gris2: #bcbec0;
+
+  --primary: #dd141d;
+  --secondary: #bcbec0;
+  --white: #eceeed;
+  --black: #000000;
+
+  --gradient-primary: linear-gradient(to right, var(--primary), #f25866);
+
+  --height-logo: auto;
+}

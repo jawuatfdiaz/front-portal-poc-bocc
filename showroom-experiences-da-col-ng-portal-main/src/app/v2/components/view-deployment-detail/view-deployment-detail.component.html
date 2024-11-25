@@ -1,0 +1,219 @@
+<div class="row information">
+  <div class="text">
+    <label for="name" class="form-label">Deployment name</label>
+    <div>
+      {{ deploymentDetail?.name }}
+    </div>
+  </div>
+
+  <div class="text">
+    <label for="name" class="form-label">Status</label>
+    <div>
+      {{ deploymentDetail?.status | titlecase }}
+    </div>
+  </div>
+
+  <div class="text">
+    <ng-container *ngFor="let user of deploymentDetail?.relatedParty">
+      <ng-container *ngIf="user.role === 'REQUESTER'">
+        <label for="name" class="form-label">Applicant</label>
+        <div>
+          {{ user?.name }}
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <div class="text">
+    <ng-container *ngFor="let user of deploymentDetail?.relatedParty">
+      <ng-container *ngIf="user.role === 'APPROVER'">
+        <label for="name" class="form-label">Approver</label>
+        <div>
+          {{ user?.name }}
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <div class="text">
+    <label for="name" class="form-label">Requested date</label>
+    <div>
+      {{ formatDateTime(deploymentDetail?.request?.requestedDay) }}
+    </div>
+  </div>
+
+  <div class="text">
+    <label for="name" class="form-label">Deployment date</label>
+    <div>
+      {{ formatDateTime(deploymentDetail?.scheduling?.actions[0]?.date) }}
+    </div>
+  </div>
+
+  <div class="text" *ngIf="deploymentDetail?.scheduling?.type === 'EPHEMERAL'">
+    <label for="name" class="form-label">Date of destruction</label>
+    <div>
+      {{ formatDateTime(deploymentDetail?.scheduling?.actions[1]?.date) }}
+    </div>
+  </div>
+
+  <div class="text">
+    <label for="name" class="form-label">Cost center</label>
+    <div>
+      {{ deploymentDetail?.costCenter }}
+    </div>
+  </div>
+
+  <div class="text">
+    <label for="name" class="form-label">Cloud provider</label>
+    <div>
+      {{ deploymentDetail?.configuration?.cloudProvider }}
+    </div>
+  </div>
+
+  <div class="text">
+    <label for="name" class="form-label">Repository source branch</label>
+    <div>
+      {{
+        deploymentDetail?.configuration?.deployOrchestrator
+          ?.repositorySourceBranchRef
+      }}
+    </div>
+  </div>
+
+  <div class="text">
+    <label for="name" class="form-label">Repository source kind</label>
+    <div>
+      {{
+        deploymentDetail?.configuration?.deployOrchestrator
+          ?.repositorySourceKind
+      }}
+    </div>
+  </div>
+
+  <div
+    class="text"
+    style="grid-column: span 2"
+    *ngIf="
+      deploymentDetail?.configuration?.deployOrchestrator
+        ?.repositoryTargetBranchRef
+    "
+  >
+    <label for="name" class="form-label">Repository target branch</label>
+    <div>
+      <span
+        matTooltip="Click to copy"
+        (click)="
+          handleCopyElement(
+            deploymentDetail?.configuration?.deployOrchestrator
+              ?.repositoryTargetBranchRef
+          )
+        "
+      >
+        {{
+          deploymentDetail?.configuration?.deployOrchestrator
+            ?.repositoryTargetBranchRef
+        }}
+      </span>
+    </div>
+  </div>
+
+  <div class="text" *ngIf="deploymentDetail?.configuration?.gitHubUser">
+    <label for="name" class="form-label">GitHub user</label>
+    <div>
+      {{ deploymentDetail?.configuration?.gitHubUser }}
+    </div>
+  </div>
+
+  <div class="text">
+    <label for="name" class="form-label">Resource name</label>
+    <div>
+      {{ deploymentDetail?.configuration?.linkedRequestedResourceName }}
+    </div>
+  </div>
+</div>
+
+<div
+  class="row"
+  [ngClass]="{ 'mg-btn': deploymentDetail?.events }"
+  *ngIf="deploymentDetail?.configuration?.inputs?.length"
+>
+  <div class="col">
+    <h6>Parameters</h6>
+    <table class="table" aria-describedby="list parameters">
+      <thead>
+        <tr>
+          <th scope="col">Key</th>
+          <th scope="col">Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let param of deploymentDetail?.configuration?.inputs">
+          <td>{{ param.key }}</td>
+          <td>{{ param.value }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row" *ngIf="deploymentDetail?.events">
+  <div class="col logs">
+    <h6>Logs</h6>
+
+    <div class="event">
+      <span>Events</span>
+      <div class="logs-container">
+        <div class="log" *ngFor="let event of deploymentDetail?.events">
+          <div class="status">
+            <p
+              [ngClass]="
+                event.type === 'WARNING'
+                  ? 'warning'
+                  : event.type === 'INFO'
+                  ? 'info'
+                  : event.type === 'ERROR'
+                  ? 'error'
+                  : event.type === 'SUCCESS'
+                  ? 'success'
+                  : ''
+              "
+            >
+              {{ event.type }}
+            </p>
+          </div>
+          <div class="message">
+            <p>{{ event.message }}</p>
+            <p>
+              {{ formatDateTime(event.date) }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="output" *ngIf="deploymentDetail?.outputs?.length">
+      <span>Outputs</span>
+      <div class="logs-container">
+        <div class="log" *ngFor="let output of deploymentDetail?.outputs">
+          <div class="status">
+            <p>
+              {{ output.key }}
+            </p>
+          </div>
+          <div class="message">
+            <p
+              class="character_string"
+              matTooltip="Click to copy"
+              (click)="handleCopyElement(output.value)"
+            >
+              {{ output.value }}
+            </p>
+            <p>
+              {{ output.type }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

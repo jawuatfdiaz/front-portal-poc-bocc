@@ -1,0 +1,21 @@
+div {
+  font-family: var(--font);
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--black);
+  }
+
+  span {
+    font-size: 10px;
+    font-weight: 500;
+    padding-left: 2px;
+    // color: #9c2f2f;
+  }
+
+  .wrapper-div {
+    padding-left: 0;
+    padding-right: 0;
+    min-height: 70px;
+  }
+}

@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg navbar-expand-md" id="header-menu">
+  <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#headerMenu"
+      aria-controls="headerMenu"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="material-symbols-outlined menu-icon"> menu </span>
+    </button>
+
+    <div class="large-header">
+      <div *ngIf="!isResponsive" class="icon-container">
+        <button (click)="expandMenu()">
+          <span class="material-symbols-outlined menu-icon"> menu </span>
+        </button>
+      </div>
+
+      <span
+        class="navbar-brand"
+        [ngStyle]="!isResponsive ? { 'margin-left': '20px' } : {}"
+      >
+        <img [src]="theme.properties.logo" alt=""/>
+      </span>
+    </div>
+
+    <div class="d-flex">
+      <div class="avatar-container">
+        <img
+          src="https://www.getillustrations.com/photos/pack/3d-avatar-male_lg.png"
+          alt=""
+        />
+        <div class="user-info">
+          <p>
+            <b>{{ infoAccount?.name }}</b>
+          </p>
+          <p>{{ infoAccount?.username }}</p>
+        </div>
+        <button (click)="showUserOptions()">
+          <span class="material-symbols-outlined menu-icon">
+            arrow_drop_down
+          </span>
+        </button>
+
+        <div class="user-options" *ngIf="showUserOpt">
+          <button (click)="logout()">
+            <span class="material-symbols-outlined testOption"> logout </span
+            ><span>Sign out</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isResponsive" class="collapse navbar-collapse" id="headerMenu">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+    </div>
+        </div>
+</nav>

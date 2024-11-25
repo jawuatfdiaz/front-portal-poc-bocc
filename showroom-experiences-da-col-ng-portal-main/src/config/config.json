@@ -1,0 +1,1589 @@
+{
+  "themeId": "default",
+  "themes": [
+    {
+      "id": "default",
+      "properties": {
+        "logo": "../assets/res/home-page/logo-ntt.png",
+        "themeUrl": "../themes/default.css",
+        "removeField": [],
+        "removeFields": [
+          "deployOrchestor"
+        ],
+        "deployOrchestor": false,
+        "dataFilters": {
+          "cloudProvider": [
+            {
+              "name": "Azure",
+              "code": "AZURE"
+            }
+          ]
+        },
+        "localLogin": false,
+        "auth": {
+          "clientId": "25dc2e1a-eced-46ab-8e36-dd230ddfdbd8",
+          "redirectUri": "https://provisioning.nttdataco.com",
+          "postLogoutRedirectUri": "https://provisioning.nttdataco.com"
+        },
+        "backendUrl": "https://provisioning-app.redflower-4e1a32a4.eastus2.azurecontainerapps.io/api/"
+      }
+    },
+    {
+      "id": "sura",
+      "properties": {
+        "logo": "../assets/res/home-page/sura.svg",
+        "themeUrl": "../themes/default.css",
+        "removeField": [],
+        "removeFields": [
+          "deployOrchestor"
+        ],
+        "deployOrchestor": false,
+        "dataFilters": {
+          "cloudProvider": [
+            {
+              "name": "Azure",
+              "code": "AZURE"
+            }
+          ]
+        },
+        "localLogin": false,
+        "auth": {
+          "clientId": "ec0a8c8a-a94e-437b-8b76-53b8d82ea0f0",
+          "redirectUri": "https://cdne-portaliac-lab.azureedge.net",
+          "postLogoutRedirectUri": "https://cdne-portaliac-lab.azureedge.net",
+          "authority": "https://login.microsoftonline.com/3c0bd4fe-1111-4d13-8e0c-7c33b9eb7581"
+        },
+        "backendUrl": "https://portaliac-lab-app.lemonfield-ffc05bde.eastus.azurecontainerapps.io/api/"
+      }
+    },
+    {
+      "id": "davivienda",
+      "properties": {
+        "logo": "../assets/images/davivienda-logo.png",
+        "themeUrl": "../themes/davivienda.css",
+        "removeField": [
+          "country"
+        ],
+        "removeFields": [
+          "subCategories",
+          "technologies",
+          "deployOrchestor"
+        ],
+        "deployOrchestor": false,
+        "localLogin": true,
+        "auth": {
+          "clientId": "e52ccdbb-08b4-4e4a-8430-3fcf43306542",
+          "redirectUri": "http://localhost:4200",
+          "postLogoutRedirectUri": "http://localhost:4200",
+          "authority": "https://login.microsoftonline.com/d36775fa-f481-4695-86f4-41432c8f57af"
+        },
+        "backendUrl": "https://provisioning-app.redflower-4e1a32a4.eastus2.azurecontainerapps.io/api/",
+        "dataFilters": {
+          "categories": [
+            {
+              "name": "Area Usuaria 1",
+              "code": "area_usuaria_1",
+              "description": "",
+              "subItems": []
+            },
+            {
+              "name": "Area Usuaria 2",
+              "code": "area_usuaria_2",
+              "description": "",
+              "subItems": []
+            },
+            {
+              "name": "Area Usuaria 3",
+              "code": "area_usuaria_3",
+              "description": "",
+              "subItems": []
+            }
+          ],
+          "country": [
+            {
+              "name": "filial 1",
+              "code": "filial_1"
+            },
+            {
+              "name": "filial 2",
+              "code": "filial_2"
+            },
+            {
+              "name": "filial 3",
+              "code": "filial_3"
+            },
+            {
+              "name": "filial 4",
+              "code": "filial_4"
+            }
+          ],
+          "cloudProvider": [
+            {
+              "name": "Azure",
+              "code": "AZURE"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "defaultFilters": {
+    "typeResources": [
+      {
+        "value": "TERRAFORM_MODULE",
+        "id": "TERRAFORM_MODULE"
+      },
+      {
+        "value": "ANSIBLE_PLAYBOOK",
+        "id": "ANSIBLE_PLAYBOOK"
+      },
+      {
+        "value": "ANSIBLE_ROLE",
+        "id": "ANSIBLE_ROLE"
+      },
+      {
+        "value": "BLUEPRINT_INFRAESTRUCTURE",
+        "id": "BLUEPRINT_INFRAESTRUCTURE"
+      }
+    ],
+    "categories": [
+      {
+        "name": "Digital Experience",
+        "code": "DIGITAL_EXPERIENCE",
+        "description": "Bringing to life digital products through any channel",
+        "subItems": [
+          {
+            "name": "Experience Design",
+            "code": "EXPERIENCE_DESIGN"
+          },
+          {
+            "name": "Creative Design",
+            "code": "CREATIVE_DESIGN"
+          },
+          {
+            "name": "Mobile Platforms",
+            "code": "MOBILE_PLATFORMS"
+          },
+          {
+            "name": "Conversational AI",
+            "code": "CONVERSATIONAL_AI"
+          },
+          {
+            "name": "Metaverse",
+            "code": "METAVERSE"
+          },
+          {
+            "name": "Digital Commerce",
+            "code": "DIGITAL_COMMERCE"
+          },
+          {
+            "name": "DX Platforms",
+            "code": "DX_PLATFORMS"
+          },
+          {
+            "name": "Phygital",
+            "code": "PHYGIYAL"
+          },
+          {
+            "name": "Experience Inteligence & Marketing Automation",
+            "code": "EXPERIENCE_INTELIGENCE_AND_MARKETING_AUTOMATION"
+          }
+        ]
+      },
+      {
+        "name": "Data & Analytics",
+        "code": "DATA_AND_ANALYTICS",
+        "description": "Enable data-based decisions and actionable insights",
+        "subItems": [
+          {
+            "name": "Data Strategy",
+            "code": "DATA_STRATEGY"
+          },
+          {
+            "name": "Data Platform",
+            "code": "DATA_PLATFORM"
+          },
+          {
+            "name": "Artificial Inteligence",
+            "code": "ARTIFICIAL_INTELIGENCE"
+          },
+          {
+            "name": "Decision Inteligence",
+            "code": "DECISION_INTELIGENCE"
+          },
+          {
+            "name": "Data Security",
+            "code": "DATA_SECURITY"
+          }
+        ]
+      },
+      {
+        "name": "Digital Architecture",
+        "code": "DIGITAL_ARCHITECTURE",
+        "description": "Providing digital platforms to streamline transformation",
+        "subItems": [
+          {
+            "name": "Architecture Strategy & Design",
+            "code": "ARCHITECTURE_STRATEGY_AND_DESIGN"
+          },
+          {
+            "name": "Micro Frontends Architectures",
+            "code": "MICRO_FRONTENDS_ARCHITECTURES"
+          },
+          {
+            "name": "API Strategy",
+            "code": "API_STRATEGY"
+          },
+          {
+            "name": "Composable and Integration Architectures",
+            "code": "COMPOSABLE_AND_INTEGRATION_ARCHITECTURES"
+          },
+          {
+            "name": "Hybrid and Multi Cloud Architectures",
+            "code": "HYBRID_AND_MULTI_CLOUD_ARCHITECTURES"
+          },
+          {
+            "name": "DevSecOps, SRE and Resilient Architectures",
+            "code": "DEVSECOPS_SRE_AND_RESILIENT_ARCHITECTURES"
+          },
+          {
+            "name": "Blockchain, DTLs and Web 3",
+            "code": "BLOCKCHAIN_DTLS_AND_WEB_3"
+          },
+          {
+            "name": "Digital Twins, Edge & IoT Architectures",
+            "code": "DIGITAL_TWINS_EDGE_AND_IOT_ARCHITECTURES"
+          }
+        ]
+      },
+      {
+        "name": "Cybersecurity",
+        "code": "CYBER_SECURITY",
+        "description": "Securing the digital transformation",
+        "subItems": [
+          {
+            "name": "Security by Design",
+            "code": "SECURITY_BY_DESIGN"
+          },
+          {
+            "name": "Offensive Security",
+            "code": "OFFENSIVE_SECURITY"
+          },
+          {
+            "name": "Threat inteligence",
+            "code": "THREAT_INTELIGENCE"
+          },
+          {
+            "name": "Managed Security Monitoring",
+            "code": "MANAGED_SECURITY_MONITORING"
+          },
+          {
+            "name": "Incident Response",
+            "code": "INCIDENT_RESPONSE"
+          },
+          {
+            "name": "Identity and Access Management",
+            "code": "IDENTITY_AND_ACCESS_MANAGEMENT"
+          },
+          {
+            "name": "Digital Culture",
+            "code": "DIGITAL_CULTURE"
+          },
+          {
+            "name": "Integrated Risk Management",
+            "code": "INTEGRATED_RISK_MANAGEMENT"
+          },
+          {
+            "name": "Privacy Assurance",
+            "code": "PRIVACY_ASSURAMCE"
+          },
+          {
+            "name": "Business continuity and IT Resilence",
+            "code": "BUSINESS_CONTINUITY_AND_IT_RESILENCE"
+          }
+        ]
+      },
+      {
+        "name": "CRM",
+        "code": "CRM",
+        "description": "Managing customer experiences on the Salesforce and Microsoft Platforms",
+        "subItems": [
+          {
+            "name": "Salesforce Core (Sales, Service, Platform & Communities)",
+            "code": "SALESFORCE_CORE_SALES_SERVICE_PLATFORM_AND_COMMUNITIES"
+          },
+          {
+            "name": "Salesforce Industries",
+            "code": "SALESFORCE_INDUSTRIES"
+          },
+          {
+            "name": "Salesforce Marketing Cloud",
+            "code": "SALESFORCE_MARKETING_CLOUD"
+          },
+          {
+            "name": "Salesforce Field Service",
+            "code": "SALESFORCE_FIELD_SERVICE"
+          },
+          {
+            "name": "Salesforce Sustainability",
+            "code": "SALESFORCE_SUSTAINABILITY"
+          },
+          {
+            "name": "Microsoft Dynamics 365",
+            "code": "MICROSOFT_DYNAMICS_365"
+          }
+        ]
+      }
+    ],
+    "country": [
+      {
+        "name": "Afghanistan",
+        "code": "AF"
+      },
+      {
+        "name": "Aland Islands",
+        "code": "AX"
+      },
+      {
+        "name": "Albania",
+        "code": "AL"
+      },
+      {
+        "name": "Algeria",
+        "code": "DZ"
+      },
+      {
+        "name": "American Samoa",
+        "code": "AS"
+      },
+      {
+        "name": "AndorrA",
+        "code": "AD"
+      },
+      {
+        "name": "Angola",
+        "code": "AO"
+      },
+      {
+        "name": "Anguilla",
+        "code": "AI"
+      },
+      {
+        "name": "Antarctica",
+        "code": "AQ"
+      },
+      {
+        "name": "Antigua and Barbuda",
+        "code": "AG"
+      },
+      {
+        "name": "Argentina",
+        "code": "AR"
+      },
+      {
+        "name": "Armenia",
+        "code": "AM"
+      },
+      {
+        "name": "Aruba",
+        "code": "AW"
+      },
+      {
+        "name": "Australia",
+        "code": "AU"
+      },
+      {
+        "name": "Austria",
+        "code": "AT"
+      },
+      {
+        "name": "Azerbaijan",
+        "code": "AZ"
+      },
+      {
+        "name": "Bahamas",
+        "code": "BS"
+      },
+      {
+        "name": "Bahrain",
+        "code": "BH"
+      },
+      {
+        "name": "Bangladesh",
+        "code": "BD"
+      },
+      {
+        "name": "Barbados",
+        "code": "BB"
+      },
+      {
+        "name": "Belarus",
+        "code": "BY"
+      },
+      {
+        "name": "Belgium",
+        "code": "BE"
+      },
+      {
+        "name": "Belize",
+        "code": "BZ"
+      },
+      {
+        "name": "Benin",
+        "code": "BJ"
+      },
+      {
+        "name": "Bermuda",
+        "code": "BM"
+      },
+      {
+        "name": "Bhutan",
+        "code": "BT"
+      },
+      {
+        "name": "Bolivia",
+        "code": "BO"
+      },
+      {
+        "name": "Bosnia and Herzegovina",
+        "code": "BA"
+      },
+      {
+        "name": "Botswana",
+        "code": "BW"
+      },
+      {
+        "name": "Bouvet Island",
+        "code": "BV"
+      },
+      {
+        "name": "Brazil",
+        "code": "BR"
+      },
+      {
+        "name": "British Indian Ocean Territory",
+        "code": "IO"
+      },
+      {
+        "name": "Brunei Darussalam",
+        "code": "BN"
+      },
+      {
+        "name": "Bulgaria",
+        "code": "BG"
+      },
+      {
+        "name": "Burkina Faso",
+        "code": "BF"
+      },
+      {
+        "name": "Burundi",
+        "code": "BI"
+      },
+      {
+        "name": "Cambodia",
+        "code": "KH"
+      },
+      {
+        "name": "Cameroon",
+        "code": "CM"
+      },
+      {
+        "name": "Canada",
+        "code": "CA"
+      },
+      {
+        "name": "Cape Verde",
+        "code": "CV"
+      },
+      {
+        "name": "Cayman Islands",
+        "code": "KY"
+      },
+      {
+        "name": "Central African Republic",
+        "code": "CF"
+      },
+      {
+        "name": "Chad",
+        "code": "TD"
+      },
+      {
+        "name": "Chile",
+        "code": "CL"
+      },
+      {
+        "name": "China",
+        "code": "CN"
+      },
+      {
+        "name": "Christmas Island",
+        "code": "CX"
+      },
+      {
+        "name": "Cocos (Keeling) Islands",
+        "code": "CC"
+      },
+      {
+        "name": "Colombia",
+        "code": "CO"
+      },
+      {
+        "name": "Comoros",
+        "code": "KM"
+      },
+      {
+        "name": "Congo",
+        "code": "CG"
+      },
+      {
+        "name": "Congo, The Democratic Republic of the",
+        "code": "CD"
+      },
+      {
+        "name": "Cook Islands",
+        "code": "CK"
+      },
+      {
+        "name": "Costa Rica",
+        "code": "CR"
+      },
+      {
+        "name": "Cote D\"Ivoire",
+        "code": "CI"
+      },
+      {
+        "name": "Croatia",
+        "code": "HR"
+      },
+      {
+        "name": "Cuba",
+        "code": "CU"
+      },
+      {
+        "name": "Cyprus",
+        "code": "CY"
+      },
+      {
+        "name": "Czech Republic",
+        "code": "CZ"
+      },
+      {
+        "name": "Denmark",
+        "code": "DK"
+      },
+      {
+        "name": "Djibouti",
+        "code": "DJ"
+      },
+      {
+        "name": "Dominica",
+        "code": "DM"
+      },
+      {
+        "name": "Dominican Republic",
+        "code": "DO"
+      },
+      {
+        "name": "Ecuador",
+        "code": "EC"
+      },
+      {
+        "name": "Egypt",
+        "code": "EG"
+      },
+      {
+        "name": "El Salvador",
+        "code": "SV"
+      },
+      {
+        "name": "Equatorial Guinea",
+        "code": "GQ"
+      },
+      {
+        "name": "Eritrea",
+        "code": "ER"
+      },
+      {
+        "name": "Estonia",
+        "code": "EE"
+      },
+      {
+        "name": "Ethiopia",
+        "code": "ET"
+      },
+      {
+        "name": "Falkland Islands (Malvinas)",
+        "code": "FK"
+      },
+      {
+        "name": "Faroe Islands",
+        "code": "FO"
+      },
+      {
+        "name": "Fiji",
+        "code": "FJ"
+      },
+      {
+        "name": "Finland",
+        "code": "FI"
+      },
+      {
+        "name": "France",
+        "code": "FR"
+      },
+      {
+        "name": "French Guiana",
+        "code": "GF"
+      },
+      {
+        "name": "French Polynesia",
+        "code": "PF"
+      },
+      {
+        "name": "French Southern Territories",
+        "code": "TF"
+      },
+      {
+        "name": "Gabon",
+        "code": "GA"
+      },
+      {
+        "name": "Gambia",
+        "code": "GM"
+      },
+      {
+        "name": "Georgia",
+        "code": "GE"
+      },
+      {
+        "name": "Germany",
+        "code": "DE"
+      },
+      {
+        "name": "Ghana",
+        "code": "GH"
+      },
+      {
+        "name": "Gibraltar",
+        "code": "GI"
+      },
+      {
+        "name": "Greece",
+        "code": "GR"
+      },
+      {
+        "name": "Greenland",
+        "code": "GL"
+      },
+      {
+        "name": "Grenada",
+        "code": "GD"
+      },
+      {
+        "name": "Guadeloupe",
+        "code": "GP"
+      },
+      {
+        "name": "Guam",
+        "code": "GU"
+      },
+      {
+        "name": "Guatemala",
+        "code": "GT"
+      },
+      {
+        "name": "Guernsey",
+        "code": "GG"
+      },
+      {
+        "name": "Guinea",
+        "code": "GN"
+      },
+      {
+        "name": "Guinea-Bissau",
+        "code": "GW"
+      },
+      {
+        "name": "Guyana",
+        "code": "GY"
+      },
+      {
+        "name": "Haiti",
+        "code": "HT"
+      },
+      {
+        "name": "Heard Island and Mcdonald Islands",
+        "code": "HM"
+      },
+      {
+        "name": "Holy See (Vatican City State)",
+        "code": "VA"
+      },
+      {
+        "name": "Honduras",
+        "code": "HN"
+      },
+      {
+        "name": "Hong Kong",
+        "code": "HK"
+      },
+      {
+        "name": "Hungary",
+        "code": "HU"
+      },
+      {
+        "name": "Iceland",
+        "code": "IS"
+      },
+      {
+        "name": "India",
+        "code": "IN"
+      },
+      {
+        "name": "Indonesia",
+        "code": "ID"
+      },
+      {
+        "name": "Iran, Islamic Republic Of",
+        "code": "IR"
+      },
+      {
+        "name": "Iraq",
+        "code": "IQ"
+      },
+      {
+        "name": "Ireland",
+        "code": "IE"
+      },
+      {
+        "name": "Isle of Man",
+        "code": "IM"
+      },
+      {
+        "name": "Israel",
+        "code": "IL"
+      },
+      {
+        "name": "Italy",
+        "code": "IT"
+      },
+      {
+        "name": "Jamaica",
+        "code": "JM"
+      },
+      {
+        "name": "Japan",
+        "code": "JP"
+      },
+      {
+        "name": "Jersey",
+        "code": "JE"
+      },
+      {
+        "name": "Jordan",
+        "code": "JO"
+      },
+      {
+        "name": "Kazakhstan",
+        "code": "KZ"
+      },
+      {
+        "name": "Kenya",
+        "code": "KE"
+      },
+      {
+        "name": "Kiribati",
+        "code": "KI"
+      },
+      {
+        "name": "Korea, Democratic People\"S Republic of",
+        "code": "KP"
+      },
+      {
+        "name": "Korea, Republic of",
+        "code": "KR"
+      },
+      {
+        "name": "Kuwait",
+        "code": "KW"
+      },
+      {
+        "name": "Kyrgyzstan",
+        "code": "KG"
+      },
+      {
+        "name": "Lao People\"S Democratic Republic",
+        "code": "LA"
+      },
+      {
+        "name": "Latvia",
+        "code": "LV"
+      },
+      {
+        "name": "Lebanon",
+        "code": "LB"
+      },
+      {
+        "name": "Lesotho",
+        "code": "LS"
+      },
+      {
+        "name": "Liberia",
+        "code": "LR"
+      },
+      {
+        "name": "Libyan Arab Jamahiriya",
+        "code": "LY"
+      },
+      {
+        "name": "Liechtenstein",
+        "code": "LI"
+      },
+      {
+        "name": "Lithuania",
+        "code": "LT"
+      },
+      {
+        "name": "Luxembourg",
+        "code": "LU"
+      },
+      {
+        "name": "Macao",
+        "code": "MO"
+      },
+      {
+        "name": "Macedonia, The Former Yugoslav Republic of",
+        "code": "MK"
+      },
+      {
+        "name": "Madagascar",
+        "code": "MG"
+      },
+      {
+        "name": "Malawi",
+        "code": "MW"
+      },
+      {
+        "name": "Malaysia",
+        "code": "MY"
+      },
+      {
+        "name": "Maldives",
+        "code": "MV"
+      },
+      {
+        "name": "Mali",
+        "code": "ML"
+      },
+      {
+        "name": "Malta",
+        "code": "MT"
+      },
+      {
+        "name": "Marshall Islands",
+        "code": "MH"
+      },
+      {
+        "name": "Martinique",
+        "code": "MQ"
+      },
+      {
+        "name": "Mauritania",
+        "code": "MR"
+      },
+      {
+        "name": "Mauritius",
+        "code": "MU"
+      },
+      {
+        "name": "Mayotte",
+        "code": "YT"
+      },
+      {
+        "name": "Mexico",
+        "code": "MX"
+      },
+      {
+        "name": "Micronesia, Federated States of",
+        "code": "FM"
+      },
+      {
+        "name": "Moldova, Republic of",
+        "code": "MD"
+      },
+      {
+        "name": "Monaco",
+        "code": "MC"
+      },
+      {
+        "name": "Mongolia",
+        "code": "MN"
+      },
+      {
+        "name": "Montserrat",
+        "code": "MS"
+      },
+      {
+        "name": "Morocco",
+        "code": "MA"
+      },
+      {
+        "name": "Mozambique",
+        "code": "MZ"
+      },
+      {
+        "name": "Myanmar",
+        "code": "MM"
+      },
+      {
+        "name": "Namibia",
+        "code": "NA"
+      },
+      {
+        "name": "Nauru",
+        "code": "NR"
+      },
+      {
+        "name": "Nepal",
+        "code": "NP"
+      },
+      {
+        "name": "Netherlands",
+        "code": "NL"
+      },
+      {
+        "name": "Netherlands Antilles",
+        "code": "AN"
+      },
+      {
+        "name": "New Caledonia",
+        "code": "NC"
+      },
+      {
+        "name": "New Zealand",
+        "code": "NZ"
+      },
+      {
+        "name": "Nicaragua",
+        "code": "NI"
+      },
+      {
+        "name": "Niger",
+        "code": "NE"
+      },
+      {
+        "name": "Nigeria",
+        "code": "NG"
+      },
+      {
+        "name": "Niue",
+        "code": "NU"
+      },
+      {
+        "name": "Norfolk Island",
+        "code": "NF"
+      },
+      {
+        "name": "Northern Mariana Islands",
+        "code": "MP"
+      },
+      {
+        "name": "Norway",
+        "code": "NO"
+      },
+      {
+        "name": "Oman",
+        "code": "OM"
+      },
+      {
+        "name": "Pakistan",
+        "code": "PK"
+      },
+      {
+        "name": "Palau",
+        "code": "PW"
+      },
+      {
+        "name": "Palestinian Territory, Occupied",
+        "code": "PS"
+      },
+      {
+        "name": "Panama",
+        "code": "PA"
+      },
+      {
+        "name": "Papua New Guinea",
+        "code": "PG"
+      },
+      {
+        "name": "Paraguay",
+        "code": "PY"
+      },
+      {
+        "name": "Peru",
+        "code": "PE"
+      },
+      {
+        "name": "Philippines",
+        "code": "PH"
+      },
+      {
+        "name": "Pitcairn",
+        "code": "PN"
+      },
+      {
+        "name": "Poland",
+        "code": "PL"
+      },
+      {
+        "name": "Portugal",
+        "code": "PT"
+      },
+      {
+        "name": "Puerto Rico",
+        "code": "PR"
+      },
+      {
+        "name": "Qatar",
+        "code": "QA"
+      },
+      {
+        "name": "Reunion",
+        "code": "RE"
+      },
+      {
+        "name": "Romania",
+        "code": "RO"
+      },
+      {
+        "name": "Russian Federation",
+        "code": "RU"
+      },
+      {
+        "name": "RWANDA",
+        "code": "RW"
+      },
+      {
+        "name": "Saint Helena",
+        "code": "SH"
+      },
+      {
+        "name": "Saint Kitts and Nevis",
+        "code": "KN"
+      },
+      {
+        "name": "Saint Lucia",
+        "code": "LC"
+      },
+      {
+        "name": "Saint Pierre and Miquelon",
+        "code": "PM"
+      },
+      {
+        "name": "Saint Vincent and the Grenadines",
+        "code": "VC"
+      },
+      {
+        "name": "Samoa",
+        "code": "WS"
+      },
+      {
+        "name": "San Marino",
+        "code": "SM"
+      },
+      {
+        "name": "Sao Tome and Principe",
+        "code": "ST"
+      },
+      {
+        "name": "Saudi Arabia",
+        "code": "SA"
+      },
+      {
+        "name": "Senegal",
+        "code": "SN"
+      },
+      {
+        "name": "Serbia and Montenegro",
+        "code": "CS"
+      },
+      {
+        "name": "Seychelles",
+        "code": "SC"
+      },
+      {
+        "name": "Sierra Leone",
+        "code": "SL"
+      },
+      {
+        "name": "Singapore",
+        "code": "SG"
+      },
+      {
+        "name": "Slovakia",
+        "code": "SK"
+      },
+      {
+        "name": "Slovenia",
+        "code": "SI"
+      },
+      {
+        "name": "Solomon Islands",
+        "code": "SB"
+      },
+      {
+        "name": "Somalia",
+        "code": "SO"
+      },
+      {
+        "name": "South Africa",
+        "code": "ZA"
+      },
+      {
+        "name": "South Georgia and the South Sandwich Islands",
+        "code": "GS"
+      },
+      {
+        "name": "Spain",
+        "code": "ES"
+      },
+      {
+        "name": "Sri Lanka",
+        "code": "LK"
+      },
+      {
+        "name": "Sudan",
+        "code": "SD"
+      },
+      {
+        "name": "Suriname",
+        "code": "SR"
+      },
+      {
+        "name": "Svalbard and Jan Mayen",
+        "code": "SJ"
+      },
+      {
+        "name": "Swaziland",
+        "code": "SZ"
+      },
+      {
+        "name": "Sweden",
+        "code": "SE"
+      },
+      {
+        "name": "Switzerland",
+        "code": "CH"
+      },
+      {
+        "name": "Syrian Arab Republic",
+        "code": "SY"
+      },
+      {
+        "name": "Taiwan, Province of China",
+        "code": "TW"
+      },
+      {
+        "name": "Tajikistan",
+        "code": "TJ"
+      },
+      {
+        "name": "Tanzania, United Republic of",
+        "code": "TZ"
+      },
+      {
+        "name": "Thailand",
+        "code": "TH"
+      },
+      {
+        "name": "Timor-Leste",
+        "code": "TL"
+      },
+      {
+        "name": "Togo",
+        "code": "TG"
+      },
+      {
+        "name": "Tokelau",
+        "code": "TK"
+      },
+      {
+        "name": "Tonga",
+        "code": "TO"
+      },
+      {
+        "name": "Trinidad and Tobago",
+        "code": "TT"
+      },
+      {
+        "name": "Tunisia",
+        "code": "TN"
+      },
+      {
+        "name": "Turkey",
+        "code": "TR"
+      },
+      {
+        "name": "Turkmenistan",
+        "code": "TM"
+      },
+      {
+        "name": "Turks and Caicos Islands",
+        "code": "TC"
+      },
+      {
+        "name": "Tuvalu",
+        "code": "TV"
+      },
+      {
+        "name": "Uganda",
+        "code": "UG"
+      },
+      {
+        "name": "Ukraine",
+        "code": "UA"
+      },
+      {
+        "name": "United Arab Emirates",
+        "code": "AE"
+      },
+      {
+        "name": "United Kingdom",
+        "code": "GB"
+      },
+      {
+        "name": "United States",
+        "code": "US"
+      },
+      {
+        "name": "United States Minor Outlying Islands",
+        "code": "UM"
+      },
+      {
+        "name": "Uruguay",
+        "code": "UY"
+      },
+      {
+        "name": "Uzbekistan",
+        "code": "UZ"
+      },
+      {
+        "name": "Vanuatu",
+        "code": "VU"
+      },
+      {
+        "name": "Venezuela",
+        "code": "VE"
+      },
+      {
+        "name": "Viet Nam",
+        "code": "VN"
+      },
+      {
+        "name": "Virgin Islands, British",
+        "code": "VG"
+      },
+      {
+        "name": "Virgin Islands, U.S.",
+        "code": "VI"
+      },
+      {
+        "name": "Wallis and Futuna",
+        "code": "WF"
+      },
+      {
+        "name": "Western Sahara",
+        "code": "EH"
+      },
+      {
+        "name": "Yemen",
+        "code": "YE"
+      },
+      {
+        "name": "Zambia",
+        "code": "ZM"
+      },
+      {
+        "name": "Zimbabwe",
+        "code": "ZW"
+      }
+    ],
+    "cloudProvider": [
+      {
+        "name": "Azure",
+        "code": "AZURE"
+      },
+      {
+        "name": "Amazon web services",
+        "code": "AWS"
+      },
+      {
+        "name": "Google cloud platform",
+        "code": "GCP"
+      }
+    ],
+    "technologies": [
+      {
+        "name": "Argo CD",
+        "code": "ARGO CD"
+      },
+      {
+        "name": "AWS Amplify",
+        "code": "AWS_AMPLIFY"
+      },
+      {
+        "name": "AWS API Gateway",
+        "code": "AWS_API_GATEWAY"
+      },
+      {
+        "name": "AWS EC2",
+        "code": "AWS_EC2"
+      },
+      {
+        "name": "AWS ECS",
+        "code": "AWS_ECS"
+      },
+      {
+        "name": "AWS Lambda",
+        "code": "AWS_LAMBDA"
+      },
+      {
+        "name": "AWS S3",
+        "code": "AWS_S3"
+      },
+      {
+        "name": "AWS Storage Gateway",
+        "code": "AWS_STORAGE_GATEWAY"
+      },
+      {
+        "name": "Azure Api Management",
+        "code": "AZURE_API_MANAGEMENT"
+      },
+      {
+        "name": "Azure Blob Storage",
+        "code": "AZURE_BLOB_STORAGE"
+      },
+      {
+        "name": "Azure Container Apps",
+        "code": "AZURE_CONTAINER_APPS"
+      },
+      {
+        "name": "Azure Container Instance",
+        "code": "AZURE_CONTAINER_INSTANCE"
+      },
+      {
+        "name": "Azure Data Factory",
+        "code": "AZURE_DATA_FACTORY"
+      },
+      {
+        "name": "Azure Functions",
+        "code": "AZURE_FUNCTIONS"
+      },
+      {
+        "name": "Azure Iot Hub",
+        "code": "AZURE_IOT_HUB"
+      },
+      {
+        "name": "Azure Open AI",
+        "code": "AZURE_OPEN_AI"
+      },
+      {
+        "name": "Azure Static Web Apps",
+        "code": "AZURE_STATIC_WEB_APPS"
+      },
+      {
+        "name": "CDN",
+        "code": "CDN"
+      },
+      {
+        "name": "Chaos with Litmus",
+        "code": "CHAOS_WITH_LITMUS"
+      },
+      {
+        "name": "DigitalTwins",
+        "code": "DIGITAL_TWINS"
+      },
+      {
+        "name": "Docker",
+        "code": "DOCKER"
+      },
+      {
+        "name": "Elastic Stack",
+        "code": "ELASTIC_STACK"
+      },
+      {
+        "name": "FluxCD",
+        "code": "FLUX_CD"
+      },
+      {
+        "name": "Framework - CNP",
+        "code": "FRAMEWORK_CNP"
+      },
+      {
+        "name": "GCP Cloud Functions",
+        "code": "GCP_CLOUD_FUNCTIONS"
+      },
+      {
+        "name": "GCP Cloud Storage",
+        "code": "GCP_CLOUD_STORAGE"
+      },
+      {
+        "name": "GCP File Store",
+        "code": "GCP_FILE_STORE"
+      },
+      {
+        "name": "GCP Firestore",
+        "code": "GCP_FIRESTORE"
+      },
+      {
+        "name": "GitHub Actions",
+        "code": "GITHUB_ACTIONS"
+      },
+      {
+        "name": "GitLab CI",
+        "code": "GITLAB_CI"
+      },
+      {
+        "name": "GitOps",
+        "code": "GITOPS"
+      },
+      {
+        "name": "Google Cloud Run",
+        "code": "GOOGLE_CLOUD_RUN"
+      },
+      {
+        "name": "Google GKE",
+        "code": "GOOGLE_GKE"
+      },
+      {
+        "name": "Grafana",
+        "code": "GRAFANA"
+      },
+      {
+        "name": "Gremlin",
+        "code": "GREMLIN"
+      },
+      {
+        "name": "IoT",
+        "code": "IOT"
+      },
+      {
+        "name": "Java",
+        "code": "JAVA"
+      },
+      {
+        "name": "Javascript",
+        "code": "JAVASCRIPT"
+      },
+      {
+        "name": "Jenkins",
+        "code": "JENKINS"
+      },
+      {
+        "name": "Jmeter",
+        "code": "JMETER"
+      },
+      {
+        "name": "KayTrust - Foundationals",
+        "code": "KAYTRUST_FOUNDATIONALS"
+      },
+      {
+        "name": "Kong",
+        "code": "KONG"
+      },
+      {
+        "name": "LACChain",
+        "code": "LACCHAIN"
+      },
+      {
+        "name": "Litmus Chaos",
+        "code": "LITMUS_CHAOS"
+      },
+      {
+        "name": "Loki",
+        "code": "LOKI"
+      },
+      {
+        "name": "Microsoft AKS",
+        "code": "MICROSOFT_AKS"
+      },
+      {
+        "name": "Microsoft Azure",
+        "code": "MICROSOFT_AZURE"
+      },
+      {
+        "name": "Microsoft Azure CosmosDB",
+        "code": "MICROSOFT_AZURE_COSMOSDB"
+      },
+      {
+        "name": "MongoDB",
+        "code": "MONGODB"
+      },
+      {
+        "name": "Mulesoft",
+        "code": "MULESOFT"
+      },
+      {
+        "name": "MySQL - MariaDB",
+        "code": "MySQL_MARIADB"
+      },
+      {
+        "name": "Neo4j",
+        "code": "NEO4J"
+      },
+      {
+        "name": "OAuth 2.0",
+        "code": "OAUTH_2_0"
+      },
+      {
+        "name": "Oracle",
+        "code": "ORACLE"
+      },
+      {
+        "name": "PostgreSQL",
+        "code": "POSTGRESQL"
+      },
+      {
+        "name": "Python",
+        "code": "PYTHON"
+      },
+      {
+        "name": "Quarkus",
+        "code": "QUARKUS"
+      },
+      {
+        "name": "React",
+        "code": "REACT"
+      },
+      {
+        "name": "Red Hat OpenShift",
+        "code": "RED_HAT_OPENSHIFT"
+      },
+      {
+        "name": "RPA",
+        "code": "RPA"
+      },
+      {
+        "name": "Salesforce",
+        "code": "SALESFORCE"
+      },
+      {
+        "name": "SonarQube",
+        "code": "SONARQUBE"
+      },
+      {
+        "name": "Spring Boot",
+        "code": "SPRING_BOOT"
+      },
+      {
+        "name": "SQL Server",
+        "code": "SQL_SERVER"
+      },
+      {
+        "name": "WSO2",
+        "code": "WSO2"
+      }
+    ]
+  }
+}

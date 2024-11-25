@@ -1,0 +1,29 @@
+.table {
+  margin-bottom: 0;
+  font-size: 14px;
+
+  td .router {
+    text-decoration: none;
+    color: var(--blue);
+    cursor: pointer;
+  }
+
+  .error {
+    color: #dd141d;
+  }
+  .info {
+    color: blue;
+  }
+  .warning {
+    color: #f48f36;
+  }
+  .success {
+    color: green;
+  }
+}
+
+.style-alert {
+  margin-top: 15px;
+  text-align: center;
+  padding: 2rem;
+}

@@ -1,0 +1,17 @@
+<ng-container *ngIf="menuOptions && !isResponsive" class="container-sidebar">
+  <div class="container-sidebar" [ngClass]="{ expanded: expandMenu }">
+    <div class="menu-container">
+      <button
+        *ngFor="let option of menuOptions; let i = index"
+        class="menu-opt"
+        [ngClass]="{ active: option.isActive }"
+        (click)="handleMenuClick(i, option.url)"
+        [matTooltip]="!expandMenu? option.text : ''"
+        matTooltipPosition="right"
+      >
+        <span class="material-symbols-outlined">{{ option.icon }}</span>
+        <span class="text">{{ option.text }}</span>
+      </button>
+    </div>
+  </div>
+</ng-container>

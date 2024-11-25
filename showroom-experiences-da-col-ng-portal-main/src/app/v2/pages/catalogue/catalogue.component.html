@@ -1,0 +1,145 @@
+<div class="container container-catalog">
+  <h1>General catalogue</h1>
+  <app-filter (isFilterChangeEvent)="filterChange($event)"></app-filter>
+
+  <div class="cont-loader" *ngIf="loading; else content">
+    <div class="loader"></div>
+  </div>
+
+  <ng-template #content>
+    <app-view-list-resources
+      [routerNavigate]="'/catalogue/view-resource/'"
+      [setCatalogueResource]="catalogueResource"
+      [isClickFilterBtn]="isClickFilterBtn"
+      (pageIndexEvent)="onPageChange($event)"
+    >
+    </app-view-list-resources>
+  </ng-template>
+
+  <!-- <div class="cont-catalogue">
+    <div class="card">
+      <div class="card-header">
+        <div class="result">Results: {{ catalogueResource.length }}</div>
+        <div class="views">
+          <button
+            [ngClass]="{ active: activeView === grid }"
+            (click)="setActiveView(grid)"
+            data-bs-toggle="tooltip"
+            data-bs-title="Default tooltip"
+          >
+            <span class="material-symbols-outlined"> grid_view </span>
+          </button>
+          <button
+            [ngClass]="{ active: activeView === list }"
+            (click)="setActiveView(list)"
+            data-bs-toggle="tooltip"
+            data-bs-title="Default tooltip"
+          >
+            <span class="material-symbols-outlined"> view_list </span>
+          </button>
+        </div>
+      </div>
+      
+      <div class="card-body">
+        <div class="resource-cont grid-view" *ngIf="activeView === grid">
+          <div
+            class="resource"
+            *ngFor="let resource of catalogueResource; let i = index"
+          >
+            <div class="cont-img">
+              <img
+                src="../../../../assets/images/resource-default.png"
+                alt=""
+              />
+            </div>
+            <div class="container-info">
+              <div class="info-header">
+                <div class="name">
+                  <h3>
+                    {{ resource.name }}
+                  </h3>
+                  <span
+                    class="owner"
+                    *ngFor="
+                      let relatedUser of resource.relatedParty;
+                      let j = index
+                    "
+                    >{{
+                      resource.relatedParty[j].role === "OWNER"
+                        ? relatedUser.name
+                        : ""
+                    }}</span
+                  >
+                </div>
+                <div class="status">{{ resource.status }}</div>
+              </div>
+
+              <div class="cont-desc">
+                <p>
+                  {{ resource.description }}
+                </p>
+              </div>
+
+              <div class="container-butt">
+                <button (click)="viewResource(resource.commonVersionId)">
+                  more information
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="resource-cont list-view" *ngIf="activeView === list">
+          <table class="table table-hover" aria-describedby="list of request ">
+            <thead>
+              <tr>
+                <th *ngFor="let colum of columns_table" scope="col">
+                  {{ colum.item }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let resource of catalogueResource; let i = index">
+                <td>{{ resource.name }}</td>
+                <td>
+                  <span
+                    *ngFor="
+                      let relatedUser of resource.relatedParty;
+                      let j = index
+                    "
+                    >{{
+                      resource.relatedParty[j].role === "OWNER"
+                        ? relatedUser.name
+                        : ""
+                    }}</span
+                  >
+                </td>
+                <td>{{ resource.description }}</td>
+                <td>{{ resource.status }}</td>
+                <td>
+                  <div class="action-container">
+                    <span
+                      (click)="viewResource(resource.commonVersionId)"
+                      class="material-symbols-outlined menu-icon"
+                    >
+                      menu
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <mat-paginator
+        [length]="20"
+        [pageSize]="8"
+        [showFirstLastButtons]="true"
+        [hidePageSize]="true"
+        (page)="onPageChange($event)"
+      >
+      </mat-paginator>
+
+    </div>
+  </div> -->
+</div>

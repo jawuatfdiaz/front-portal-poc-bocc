@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:wght@300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+
+@import './styles/main.scss';
+
+:root {
+  --font: "Montserrat", sans-serif;
+}
+
+body {
+  display: block;
+  margin: 0px;
+  font-family: var(--font);
+}
+
+.alert {
+  margin-top: 15px; 
+  text-align: center;
+  background-color: var(--white);
+  border-color: var(--white);
+}
+
+.character_string {
+  flex: 1;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+}

@@ -1,0 +1,302 @@
+<!-- componente-modal.component.html -->
+<div
+  #exampleModal
+  id="exampleModal"
+  class="modal modal-lg fade deplotmentModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Request deployment form
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="deploymentForm">
+          <div class="row">
+            <div class="col form-group">
+              <app-evr-form
+                label="Deployment name *"
+                [(state)]="deploymentForm.controls.name"
+              >
+                <input
+                  class="form-control"
+                  type="text"
+                  minlength="1"
+                  maxlength="50"
+                  placeholder="Deployment name"
+                  formControlName="name"
+                  id="name"
+                  [ngClass]="{
+                    'form-control-danger':
+                      !deploymentForm.controls.name.valid &&
+                      (deploymentForm.controls.name.dirty ||
+                        deploymentForm.controls.name.touched)
+                  }"
+                />
+              </app-evr-form>
+            </div>
+            <div class="col form-group">
+              <app-evr-form
+                label="Description *"
+                [(state)]="deploymentForm.controls.description"
+              >
+                <input
+                  class="form-control"
+                  type="text"
+                  minlength="1"
+                  maxlength="50"
+                  placeholder="Description"
+                  formControlName="description"
+                  id="description"
+                  [ngClass]="{
+                    'form-control-danger':
+                      !deploymentForm.controls.description.valid &&
+                      (deploymentForm.controls.description.dirty ||
+                        deploymentForm.controls.description.touched)
+                  }"
+                />
+              </app-evr-form>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col form-group">
+              <app-evr-form
+                label="Deployment date *"
+                [(state)]="deploymentForm.controls.deploymentDate"
+              >
+                <input
+                  class="form-control"
+                  type="datetime-local"
+                  formControlName="deploymentDate"
+                  id="deploymentDate"
+                  [min]="currentDate"
+                  [ngClass]="{
+                    'form-control-danger':
+                      !deploymentForm.controls.deploymentDate.valid &&
+                      (deploymentForm.controls.deploymentDate.dirty ||
+                        deploymentForm.controls.deploymentDate.touched)
+                  }"
+                />
+              </app-evr-form>
+            </div>
+            <div class="col form-group">
+              <app-evr-form *ngIf="!isEfimieral" label="Is ephemeral?">
+                <mat-checkbox
+                  class="example-margin"
+                  formControlName="isEfimieral"
+                  id="isEfimieral"
+                  (change)="getCheckValue()"
+                ></mat-checkbox>
+              </app-evr-form>
+
+              <div class="efimieral" *ngIf="isEfimieral">
+                <div>
+                  <span (click)="getCheckValue()">&times;</span>
+                </div>
+
+                <app-evr-form
+                  label="Destruction date *"
+                  [(state)]="deploymentForm.controls.destructionDate"
+                >
+                  <input
+                    class="form-control"
+                    type="datetime-local"
+                    formControlName="destructionDate"
+                    id="destructionDate"
+                    [min]="currentDate"
+                    [ngClass]="{
+                      'form-control-danger':
+                        !deploymentForm.controls.destructionDate.valid &&
+                        (deploymentForm.controls.destructionDate.dirty ||
+                          deploymentForm.controls.destructionDate.touched)
+                    }"
+                  />
+                </app-evr-form>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col form-group">
+              <app-evr-form
+                label="Cost center *"
+                [(state)]="deploymentForm.controls.costCenter"
+              >
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="Ex: INT-000000-00000"
+                  formControlName="costCenter"
+                  id="costCenter"
+                  [ngClass]="{
+                    'form-control-danger':
+                      !deploymentForm.controls.costCenter.valid &&
+                      (deploymentForm.controls.costCenter.dirty ||
+                        deploymentForm.controls.costCenter.touched)
+                  }"
+                />
+              </app-evr-form>
+            </div>
+
+            <div class="col">
+              <app-evr-form
+                label="Country *"
+                [(state)]="deploymentForm.controls.country"
+              >
+                <select
+                  class="form-select"
+                  formControlName="country"
+                  [ngClass]="{
+                    'form-control-danger':
+                      !deploymentForm.controls.country.valid &&
+                      (deploymentForm.controls.country.dirty ||
+                        deploymentForm.controls.country.touched)
+                  }"
+                >
+                  <option
+                    *ngFor="let country of listCountries"
+                    [value]="country.name"
+                  >
+                    {{ country.name }}
+                  </option>
+                </select>
+              </app-evr-form>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col form-group">
+              <app-evr-form
+                label="Github user"
+                [(state)]="deploymentForm.controls.githubUser"
+              >
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder=""
+                  formControlName="githubUser"
+                  id="githubUser"
+                  [ngClass]="{
+                    'form-control-danger':
+                      !deploymentForm.controls.githubUser.valid &&
+                      (deploymentForm.controls.githubUser.dirty ||
+                        deploymentForm.controls.githubUser.touched)
+                  }"
+                />
+              </app-evr-form>
+            </div>
+            <div class="col" *ngIf="approvalUsers">
+              <app-evr-form
+                label="Approver *"
+                [(state)]="deploymentForm.controls.approver"
+              >
+                <select
+                  class="form-select"
+                  formControlName="approver"
+                  [ngClass]="{
+                    'form-control-danger':
+                      !deploymentForm.controls.approver.valid &&
+                      (deploymentForm.controls.approver.dirty ||
+                        deploymentForm.controls.approver.touched)
+                  }"
+                >
+                  <option
+                    *ngFor="let user of approvalUsers"
+                    [value]="user.name"
+                  >
+                    {{ user?.name }}
+                  </option>
+                </select>
+              </app-evr-form>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="parameters.length">
+            <div class="col parameters-container">
+              <h6>Parameters</h6>
+
+              <form [formGroup]="parametersForm">
+                <div formArrayName="parameters">
+                  <table class="table" aria-describedby="list parameters">
+                    <thead>
+                      <tr>
+                        <th style="width: 25%" scope="col">Key</th>
+                        <th style="width: 25%" scope="col">Type</th>
+                        <th style="width: 25%" scope="col">Required</th>
+                        <th style="width: 25%" scope="col">Value *</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        class=""
+                        *ngFor="
+                          let parameter of parameters.controls;
+                          let i = index
+                        "
+                        [formGroupName]="i"
+                      >
+                        <td>{{ parameter.get("key").value }}</td>
+                        <td>{{ parameter.get("type").value | titlecase }}</td>
+                        <td>{{ parameter.get("required").value }}</td>
+                        <td>
+                          <input
+                            class="form-control"
+                            formControlName="value"
+                            *ngIf="parameter.get('type').value === 'STRING'"
+                          />
+                          <input
+                            class="form-control"
+                            formControlName="value"
+                            type="number"
+                            *ngIf="parameter.get('type').value === 'NUMBER'"
+                          />
+                          <select
+                            class="form-control"
+                            formControlName="value"
+                            *ngIf="parameter.get('type').value === 'BOOLEAN'"
+                          >
+                            <option value="true">true</option>
+                            <option value="false">false</option>
+                          </select>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </form>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-back" data-bs-dismiss="modal">
+          Close
+        </button>
+        <div>
+          <button
+            class="btn-primary"
+            type="button"
+            data-bs-dismiss="modal"
+            (click)="sendRequest()"
+            [disabled]="!deploymentForm.valid || !parametersForm.valid"
+          >
+            Send request
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

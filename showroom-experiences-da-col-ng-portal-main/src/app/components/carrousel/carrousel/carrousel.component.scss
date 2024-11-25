@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono");
+
+* {
+  box-sizing: border-box;
+  font-weight: normal;
+}
+
+.container-carousel {
+  margin-left: 4rem;
+}
+
+.title-dt {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+}
+.boxesContainer {
+  display: flex;
+  padding: 2rem 2rem 0rem;
+  width: 90%;
+  overflow: hidden;
+}
+
+.flip {
+  position: relative;
+  display: inline-block;
+  margin-right: 1rem;
+  margin-bottom: 1em;
+  width: 400px;
+  > .front,
+  > .back {
+    display: block;
+    color: white;
+    width: inherit;
+    background: #313131;
+    background-size: cover !important;
+    background-position: center !important;
+    height: 55vh;
+    padding: 1em 2em;
+
+    border-radius: 10px;
+    overflow: auto;
+    p {
+      font-size: 0.9125rem;
+      line-height: 160%;
+      color: #999;
+    }
+    .text-expertises {
+      font-size: 0.9125rem;
+      line-height: 160%;
+      color: white;
+    }
+  }
+}
+
+.text-shadow {
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.04), 2px 2px rgba(0, 0, 0, 0.04),
+    3px 3px rgba(0, 0, 0, 0.04), 4px 4px rgba(0, 0, 0, 0.04),
+    0.125rem 0.125rem rgba(0, 0, 0, 0.04), 6px 6px rgba(0, 0, 0, 0.04),
+    7px 7px rgba(0, 0, 0, 0.04), 8px 8px rgba(0, 0, 0, 0.04),
+    9px 9px rgba(0, 0, 0, 0.04), 0.3125rem 0.3125rem rgba(0, 0, 0, 0.04),
+    11px 11px rgba(0, 0, 0, 0.04), 12px 12px rgba(0, 0, 0, 0.04),
+    13px 13px rgba(0, 0, 0, 0.04), 14px 14px rgba(0, 0, 0, 0.04),
+    0.625rem 0.625rem rgba(0, 0, 0, 0.04), 16px 16px rgba(0, 0, 0, 0.04),
+    17px 17px rgba(0, 0, 0, 0.04), 18px 18px rgba(0, 0, 0, 0.04),
+    19px 19px rgba(0, 0, 0, 0.04), 1.25rem 1.25rem rgba(0, 0, 0, 0.04);
+}
+
+.btn-group {
+  margin: 2rem;
+
+  .previous {
+    background-color: #08122e;
+    color: white;
+  }
+
+  .next {
+    background-color: #08122e;
+    color: white;
+  }
+
+  .round {
+    cursor: pointer;
+    font-size: 3vh;
+    display: inline-flex;
+    width: 50px;
+    height: 50px;
+    text-decoration: none;
+    justify-content: center;
+    border: 1px solid #6785c1;
+    &:hover {
+      border: 2px solid white;
+    }
+  }
+}

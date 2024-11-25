@@ -1,0 +1,83 @@
+<div class="container container-catalog">
+  <h1>
+    Resource management
+    <button class="btn-primary" (click)="goToCreateResource()">
+      Create resource
+    </button>
+  </h1>
+
+  <div class="cont-loader" *ngIf="loading; else content">
+    <div class="loader"></div>
+  </div>
+
+  <ng-template #content>
+    <app-view-list-resources
+      [routerNavigate]="'resource-management/view-resource/'"
+      [setCatalogueResource]="resourcesList"
+      (pageIndexEvent)="onPageChange($event)"
+    >
+    </app-view-list-resources>
+  </ng-template>
+
+  <!-- <div class="cont-catalogue">
+    <div class="card">
+      <div class="card-header">
+        <div class="result">Results:{{ resourcesList.length }}</div>
+        <div class="views">
+          <button
+            [ngClass]="{ active: activeView === 'grid' }"
+            (click)="setActiveView('grid')"
+            data-bs-toggle="tooltip"
+            data-bs-title="Default tooltip"
+          >
+            <span class="material-symbols-outlined"> grid_view </span>
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="resource-cont grid-view" *ngIf="activeView === 'grid'">
+          <div
+            class="resource"
+            *ngFor="let resource of resourcesList; index as i"
+          >
+            <div class="cont-img">
+              <img src="../../../../assets/images/resource-default.png" alt="">
+            </div>
+            <div class="container-info">
+              <div class="info-header">
+                <div class="name">
+                  <h3>{{ resource.name }}</h3>
+                  <span class="owner">{{
+                    resource.relatedParty[0].email
+                  }}</span>
+                </div>
+                <div class="status">{{ resource.status }}</div>
+              </div>
+
+              <div class="cont-desc">
+                <p>{{ resource.description }}</p>
+              </div>
+
+              <div class="container-butt">
+                <button (click)="seeResourceDetail(resource.commonVersionId)">
+                  more information
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="resource-cont list-view" *ngIf="activeView === 'list'">
+          as222d
+        </div>
+      </div>
+      <mat-paginator
+        [length]="20"
+        [pageSize]="8"
+        [showFirstLastButtons]="true"
+        [hidePageSize]="true"
+        (page)="onPageChange($event)"
+      >
+      </mat-paginator>
+    </div>
+  </div> -->
+</div>

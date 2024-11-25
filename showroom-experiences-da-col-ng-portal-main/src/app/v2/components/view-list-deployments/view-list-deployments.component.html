@@ -1,0 +1,46 @@
+<table class="table table-hover" aria-describedby="list of request ">
+  <thead>
+    <tr>
+      <th *ngFor="let colum of columnsTable" scope="col">
+        {{ colum.item }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let request of deploymentList">
+      <td>
+        <span class="router" (click)="viewDeploy(request.id)">
+          {{ request.name }}
+        </span>
+
+        <!-- <a [href]="routerNavigate + request.id">
+          {{ request.name }}
+        </a> -->
+      </td>
+      <td>
+        <ng-container *ngFor="let item of request.relatedParty">
+          <ng-container
+            *ngIf="item.role === 'APPROVER' && tipyPage === 'request'"
+          >
+            {{ item.name }}
+          </ng-container>
+          <ng-container
+            *ngIf="item.role === 'REQUESTER' && tipyPage === 'inbox'"
+          >
+            {{ item.name }}
+          </ng-container>
+        </ng-container>
+      </td>
+      <td>{{ request.country }}</td>
+      <td>{{ request.request.requestedDay | date : "dd/MM/y" }}</td>
+      <td [ngClass]="assignClass(request.status)">
+        {{ request.status | titlecase }}
+      </td>
+      <td>
+        {{ request.configuration.linkedRequestedResourceName }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="style-alert" *ngIf="!deploymentList.length">No data available!</div>

@@ -1,0 +1,833 @@
+<div class="container container-resource-detail">
+  <h1>
+    View resource
+    <button
+      *ngIf="resource?.enable"
+      (click)="requestDeploy()"
+      class="btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      Request deployment
+    </button>
+
+    <button
+      *ngIf="!resource?.enable"
+      class="btn-primary"
+      (click)="alertToEnableresources()"
+    >
+      Request deployment
+    </button>
+  </h1>
+
+  <div class="cont-loader" *ngIf="loading; else content">
+    <div class="loader"></div>
+  </div>
+
+  <ng-template #content>
+    <div class="cont-resource-detail">
+      <div class="card">
+        <div class="card-body">
+          <div class="resource-cont">
+            <h5>
+              Basic data
+              <mat-slide-toggle
+                *ngIf="
+                  infoAccount.username === resource?.relatedParty[0]?.username
+                "
+                (change)="toggleChanged($event)"
+                [(ngModel)]="enableResource"
+                >Enable</mat-slide-toggle
+              >
+            </h5>
+            <div class="row information">
+              <div class="text">
+                <label for="name" class="form-label">Type resource</label>
+                <div>
+                  {{ resource?.type }}
+                </div>
+              </div>
+
+              <div class="text">
+                <label for="name" class="form-label">Categories</label>
+                <div>
+                  <ng-container
+                    *ngFor="let category of resource?.category; index as i"
+                  >
+                    {{
+                      category +
+                        (resource?.category?.length !== i + 1 ? " / " : "")
+                    }}
+                  </ng-container>
+                </div>
+              </div>
+
+              <div class="text" *ngIf="resource?.subCategory?.length">
+                <label for="name" class="form-label">Subcategories</label>
+                <div>
+                  <ng-container
+                    *ngFor="
+                      let subcategory of resource?.subCategory;
+                      index as i
+                    "
+                  >
+                    {{
+                      subcategory +
+                        (resource?.subCategory?.length !== i + 1 ? " / " : "")
+                    }}
+                  </ng-container>
+                </div>
+              </div>
+
+              <div class="text" *ngIf="resource?.technologies.length">
+                <label for="name" class="form-label">Technologies</label>
+                <div>
+                  <ng-container
+                    *ngFor="
+                      let technology of resource?.technologies;
+                      index as i
+                    "
+                  >
+                    {{
+                      technology +
+                        (resource?.technologies?.length !== i + 1 ? " / " : "")
+                    }}
+                  </ng-container>
+                </div>
+              </div>
+
+              <div class="text">
+                <label for="name" class="form-label">Resource name</label>
+                <div class="character_string">
+                  {{ resource?.name }}
+                </div>
+              </div>
+
+              <div class="text">
+                <label for="name" class="form-label">Monthly cost</label>
+                <div>
+                  {{ resource?.estimatedCost }}
+                </div>
+              </div>
+
+              <div class="text" style="grid-column: span 2">
+                <label for="name" class="form-label">Description</label>
+                <div>
+                  {{ resource?.description }}
+                </div>
+              </div>
+
+              <div class="text">
+                <label for="name" class="form-label"
+                  >Repository source kind</label
+                >
+                <div>
+                  {{ resource?.repositorySourceKind }}
+                </div>
+              </div>
+
+              <div class="text" *ngIf="resource?.repositorySourceName">
+                <label for="name" class="form-label"
+                  >Repository source name</label
+                >
+                <div>
+                  <span
+                    class="character_string"
+                    matTooltip="Click to copy"
+                    (click)="handleCopyElement(resource?.repositorySourceName)"
+                  >
+                    {{ resource.repositorySourceName }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="text" style="grid-column: span 2">
+                <label for="name" class="form-label"
+                  >Repository source url</label
+                >
+                <div>
+                  <span
+                    class="character_string"
+                    matTooltip="Click to copy"
+                    (click)="handleCopyElement(resource?.repositorySourceUrl)"
+                  >
+                    {{ resource?.repositorySourceUrl }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="text">
+                <label for="name" class="form-label">Owner</label>
+                <div>
+                  <ng-container *ngFor="let item of resource?.relatedParty">
+                    <ng-container *ngIf="item.role === 'OWNER'">
+                      {{ item.name }}
+                    </ng-container>
+                  </ng-container>
+                </div>
+              </div>
+
+              <div class="text">
+                <label for="name" class="form-label">Email</label>
+                <div>
+                  <ng-container *ngFor="let item of resource?.relatedParty">
+                    <ng-container *ngIf="item.role === 'OWNER'">
+                      {{ item.email }}
+                    </ng-container>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+
+            <h5>Settings</h5>
+
+            <div>
+              <div class="row information">
+                <ng-container
+                  *ngIf="
+                    resource?.type === 'TERRAFORM_MODULE' ||
+                    resource?.type === 'ANSIBLE_PLAYBOOK' ||
+                    resource?.type === 'ANSIBLE_ROLE'
+                  "
+                >
+                  <div class="text">
+                    <label for="name" class="form-label"
+                      >Repository source url</label
+                    >
+                    <div class="character_string">
+                      {{ resource?.repositorySourceUrl }}
+                    </div>
+                  </div>
+                  <div class="text">
+                    <label for="name" class="form-label"
+                      >Repository Source Branch</label
+                    >
+                    <div>
+                      {{ resource?.repositorySourceBranchRef }}
+                    </div>
+                  </div>
+                </ng-container>
+
+                <div class="text">
+                  <label for="name" class="form-label">Cloud provider</label>
+                  <div>
+                    {{ resource?.cloudProvider }}
+                  </div>
+                </div>
+
+                <ng-container *ngIf="resource?.type === 'TERRAFORM_MODULE'">
+                  <div class="text">
+                    <label for="name" class="form-label">Terraform name</label>
+                    <div>
+                      {{ resource?.cloudProvider }}
+                    </div>
+                  </div>
+
+                  <div class="text">
+                    <label for="name" class="form-label">Version</label>
+                    <div>
+                      {{ resource?.version }}
+                    </div>
+                  </div>
+                </ng-container>
+
+                <div class="text" *ngIf="!removeFields.deployOrchestor">
+                  <label for="name" class="form-label"
+                    >Deployment Orchestador</label
+                  >
+                  <div>
+                    {{ resource?.type }}
+                  </div>
+                </div>
+              </div>
+              <div
+                class="row margin-0"
+                [ngClass]="{ 'mg-btn': resource?.links?.length }"
+                *ngIf="resource?.specifications[0]?.inputs?.length"
+              >
+                <div class="col parameters-container">
+                  <h6>Parameters</h6>
+
+                  <table class="table" aria-describedby="list parameters">
+                    <thead>
+                      <tr>
+                        <th class="parameter" scope="col">Key</th>
+                        <!-- <th scope="col">Type</th> -->
+                        <th class="parameter" scope="col">Value</th>
+                        <th class="parameter" scope="col">Required</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="let input of resource.specifications[0].inputs"
+                      >
+                        <td>{{ input.key }}</td>
+                        <!-- <td>{{ input.type | titlecase }}</td> -->
+                        <td>{{ input.defaultValue }}</td>
+                        <td>{{ input.required }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <ng-container *ngIf="resource?.links?.length">
+              <h5>Documentation</h5>
+
+              <table class="table" aria-describedby="list parameters">
+                <thead>
+                  <tr>
+                    <th scope="col">Type link</th>
+                    <th scope="col">Media resource link</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let link of resource.links">
+                    <td>
+                      {{ link.type === "DOCUMENTATION" ? "Text" : "Image" }}
+                    </td>
+                    <td>
+                      <span
+                        matTooltip="Click to copy"
+                        (click)="handleCopyElement(link.value)"
+                      >
+                        {{ link.value }}
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- <div>
+                <div class="row" style="margin: 0; margin-bottom: 0.5em">
+                  <div class="col-md-2 col-xs-2">
+                    <label for="type" class="form-label">Type link</label>
+                  </div>
+
+                  <div class="col">
+                    <label for="value" class="form-label"
+                      >Media resource link</label
+                    >
+                  </div>
+                </div>
+
+                <div
+                  class="row"
+                  style="margin: 0; margin-bottom: 0.5em"
+                  *ngFor="let link of resource.links"
+                >
+                  <div class="col-md-2 col-xs-2">
+                    <div class="text">
+                      <div>
+                        {{ link.type === "DOCUMENTATION" ? "Text" : "Image" }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col">
+                    <div class="text">
+                      <div>
+                        <span
+                          matTooltip="Click to copy"
+                          (click)="handleCopyElement(link.value)"
+                        >
+                          {{ link.value }}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<app-deploy-request-form
+  [resource]="resource"
+  *ngIf="resource"
+></app-deploy-request-form>
+
+<!-- <div class="container container-resource-detail">
+  <h1>
+    View resource
+    <button
+      *ngIf="resource?.enable"
+      (click)="requestDeploy()"
+      class="btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      Request deployment
+    </button>
+
+    <button
+      *ngIf="!resource?.enable"
+      class="btn-primary"
+      (click)="alertToEnableresources()"
+    >
+      Request deployment
+    </button>
+  </h1>
+
+  <div class="cont-resource-detail">
+    <div class="card">
+      <div class="card-body">
+        <div class="resource-cont">
+
+          <h4>
+            Basic data
+            <mat-slide-toggle
+              *ngIf="
+                infoAccount.username === resource?.relatedParty[0]?.username
+              "
+              (change)="toggleChanged($event)"
+              [(ngModel)]="enableResource"
+              >Enable</mat-slide-toggle
+            >
+          </h4>
+
+          <form [formGroup]="firstFormGroup">
+            <div class="row">
+              <div class="col" *ngIf="!removeFields.typeResource">
+                <label for="type" class="form-label">Type resource</label>
+                <div>
+                  <ng-multiselect-dropdown
+                    id="type"
+                    name="type"
+                    formControlName="type"
+                    [placeholder]="'Select type resource'"
+                    [settings]="dropdownTypeResource"
+                    [data]="typeOfResourcesList"
+                    (onSelect)="onTypeResourceSelect($event)"
+                    class="multiselect"
+                    [disabled]="disabled"
+                  >
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+              <div class="col" *ngIf="!removeFields.categories">
+                <label for="categories" class="form-label">Categories</label>
+                <div>
+                  <ng-multiselect-dropdown
+                    id="categories"
+                    name="categories"
+                    formControlName="categories"
+                    [placeholder]="'Select category'"
+                    [settings]="dropdownTypeResource2"
+                    [data]="categoriesList"
+                    class="multiselect"
+                    [disabled]="disabled"
+                  >
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+              <div class="col" *ngIf="!removeFields.subCategories">
+                <label for="subCategories" class="form-label"
+                  >Subcategories</label
+                >
+                <div>
+                  <ng-multiselect-dropdown
+                    id="subCategories"
+                    name="subCategories"
+                    formControlName="subCategories"
+                    [placeholder]="'Select subcategory'"
+                    [settings]="dropdownTypeResource2"
+                    [data]="subcategoriesList"
+                    class="multiselect"
+                    [disabled]="disabled"
+                  >
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+              <div class="col" *ngIf="!removeFields.technologies">
+                <label for="type" class="form-label">Technologies</label>
+                <div>
+                  <ng-multiselect-dropdown
+                    id="technologies"
+                    name="technologies"
+                    formControlName="technologies"
+                    [placeholder]="'Select type technology'"
+                    [settings]="dropdownTypeResource2"
+                    [data]="technologiesList"
+                    class="multiselect"
+                    [disabled]="disabled"
+                  >
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <label for="name" class="form-label">Resource name</label>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    formControlName="name"
+                  />
+                </div>
+              </div>
+              <div class="col" *ngIf="!removeFields.monthlyCost">
+                <label for="monthlyCost" class="form-label">Monthly cost</label>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="monthlyCost"
+                    formControlName="monthlyCost"
+                  />
+                </div>
+              </div>
+              <div class="col">
+                <label for="description" class="form-label">Description</label>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    formControlName="description"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col" *ngIf="this.resource?.repositorySourceKind">
+                <label for="repositorySourceKind" class="form-label"
+                  >Repository source kind</label
+                >
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="repositorySourceKind"
+                    formControlName="repositorySourceKind"
+                  />
+                </div>
+              </div>
+              <div class="col" *ngIf="this.resource?.repositorySourceName">
+                <label for="repositorySourceName" class="form-label"
+                  >Repository source name</label
+                >
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="repositorySourceName"
+                    formControlName="repositorySourceName"
+                  />
+                </div>
+              </div>
+              <div class="col" *ngIf="this.resource?.repositorySourceUrl">
+                <label for="repositorySourceUrl" class="form-label"
+                  >Repository source url</label
+                >
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="repositorySourceUrl"
+                    formControlName="repositorySourceUrl"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <label for="name" class="form-label">Owner</label>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="owner"
+                    formControlName="owner"
+                  />
+                </div>
+              </div>
+              <div class="col">
+                <label for="name" class="form-label">Email</label>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="email"
+                    formControlName="email"
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <h4>Settings</h4>
+          <form [formGroup]="secondFormGroup">
+            <div
+              class="row"
+              *ngIf="
+                resourceTypeSelect === 'TERRAFORM_MODULE' ||
+                resourceTypeSelect === 'ANSIBLE_PLAYBOOK' ||
+                resourceTypeSelect === 'ANSIBLE_ROLE'
+              "
+            >
+              <div class="col">
+                <label for="repositoryUrl" class="form-label"
+                  >Repository Source Url</label
+                >
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="repositoryUrl"
+                    formControlName="repositoryUrl"
+                  />
+                </div>
+              </div>
+              <div class="col detail-reso">
+                <label for=" repositorySourceBranch" class="form-label"
+                  >Repository Source Branch</label
+                >
+                <div class="input-group">
+                  <input
+                    class="form-control"
+                    type="text"
+                    id="repositorySourceBranch"
+                    formControlName="repositorySourceBranch"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <label for="cloudProvider" class="form-label"
+                  >Cloud provider</label
+                >
+                <div>
+                  <ng-multiselect-dropdown
+                    id="cloudProvider"
+                    name="cloudProvider"
+                    formControlName="cloudProvider"
+                    [placeholder]="'Select your cloud provider'"
+                    [settings]="dropdownTypeResource"
+                    [data]="cloudProvidersList"
+                    [disabled]="disabled"
+                    class="multiselect"
+                  >
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+              <div
+                class="col"
+                *ngIf="resourceTypeSelect === 'TERRAFORM_MODULE'"
+              >
+                <label for="providerName" class="form-label"
+                  >Terraform name</label
+                >
+                <div>
+                  <ng-multiselect-dropdown
+                    id="providerName"
+                    name="providerName"
+                    formControlName="providerName"
+                    [placeholder]="'Select your provider'"
+                    [settings]="dropdownTypeResource"
+                    [data]="cloudProvidersList"
+                    class="multiselect"
+                    [disabled]="disabled"
+                  >
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+              <div
+                class="col"
+                *ngIf="resourceTypeSelect === 'TERRAFORM_MODULE'"
+              >
+                <label for="name" class="form-label">Version</label>
+                <div class="input-group">
+                  <input
+                    type="version"
+                    class="form-control"
+                    id="version"
+                    formControlName="version"
+                  />
+                </div>
+              </div>
+
+              <div class="col" *ngIf="!removeFields.deployOrchestor">
+                <label for="deploymentOrchestador" class="form-label"
+                  >Deployment Orchestador</label
+                >
+                <div>
+                  <ng-multiselect-dropdown
+                    id="deploymentOrchestador"
+                    name="deploymentOrchestador"
+                    formControlName="deploymentOrchestador"
+                    [placeholder]="'Select your orchestador'"
+                    [settings]="dropdownTypeResource"
+                    [data]="typeOfResourcesList"
+                    (onSelect)="onTypeResourceSelect($event)"
+                    class="multiselect"
+                    [disabled]="disabled"
+                  >
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" *ngIf="parameters?.value?.length">
+              <div class="col parameters-container">
+                <label for="" class="form-label">Parameters</label>
+
+                <form [formGroup]="parametersForm">
+                  <div formArrayName="parameters">
+                    <div class="row no-padding">
+                      <div class="col-md-3">
+                        <label for="key" class="form-label">Key</label>
+                      </div>
+                      <div class="col-md-3">
+                        <label for="type" class="form-label">Type</label>
+                      </div>
+
+                      <div class="col-md-3">
+                        <label for="value" class="form-label">Value</label>
+                      </div>
+                    </div>
+
+                    <div
+                      class="row input-group"
+                      *ngFor="
+                        let parameter of parameters.controls;
+                        let i = index
+                      "
+                      [formGroupName]="i"
+                    >
+                      <div class="col-md-3 parameters-detail">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="key"
+                          formControlName="key"
+                        />
+                      </div>
+                      <div class="col-md-3">
+                        <select formControlName="type" class="form-select">
+                          <option value="STRING">Text</option>
+                          <option value="NUMBER">Number</option>
+                          <option value="BOOLEAN">Boolean</option>
+                        </select>
+                      </div>
+                      <div class="col-md-3">
+                        <input
+                          class="form-control"
+                          formControlName="value"
+                          *ngIf="parameter.get('type').value === 'STRING'"
+                        />
+                        <input
+                          type="number"
+                          class="form-control"
+                          formControlName="value"
+                          *ngIf="parameter.get('type').value === 'NUMBER'"
+                        />
+                        <select
+                          formControlName="value"
+                          class="form-control"
+                          *ngIf="parameter.get('type').value === 'BOOLEAN'"
+                        >
+                          <option value="true">True</option>
+                          <option value="false">False</option>
+                        </select>
+                      </div>
+
+                      <div class="col">
+                        <div class="cont-options">
+                          <div>
+                            <input formControlName="required" type="checkbox" />
+                            <span> Required</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </form>
+
+          <ng-container *ngIf="links?.value?.length">
+            <h4>Documentation</h4>
+            <form [formGroup]="linksForm">
+              <div class="row no-padding">
+                <div class="col-md-2 col-xs-2">
+                  <label for="type" class="form-label">Type link</label>
+                </div>
+
+                <div class="col">
+                  <label for="value" class="form-label"
+                    >Media resource link</label
+                  >
+                </div>
+              </div>
+
+              <div formArrayName="links">
+                <div
+                  class="row"
+                  *ngFor="let link of links.controls; let i = index"
+                  [formGroupName]="i"
+                >
+                  <div class="col-md-2 col-xs-2">
+                    <select class="form-select" formControlName="type">
+                      <option value="DOCUMENTATION" default>Text</option>
+                      <option value="IMAGE">Image</option>
+                    </select>
+                  </div>
+
+                  <div class="col">
+                    <ng-container
+                      *ngIf="
+                        link.get('type').value === 'DOCUMENTATION';
+                        else imageField
+                      "
+                    >
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="value"
+                        placeholder="Documentation Value"
+                      />
+                    </ng-container>
+                    <ng-template #imageField>
+                      <input
+                        *ngIf="!disabled"
+                        type="file"
+                        class="form-control"
+                        formControlName="value"
+                        accept="image/*"
+                      />
+                      <input
+                        *ngIf="disabled"
+                        type="text"
+                        class="form-control"
+                        formControlName="value"
+                        placeholder="Documentation Value"
+                      />
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-deploy-request-form
+  [resource]="resource"
+  *ngIf="resource"
+></app-deploy-request-form> -->

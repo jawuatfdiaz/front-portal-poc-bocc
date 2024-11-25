@@ -1,0 +1,33 @@
+<div>
+  <label *ngIf="label" for="for" class="col control-label" id="control-label">{{
+    label
+  }}</label>
+  <div class="col wrapper-div">
+    <ng-content></ng-content>
+
+    <span class="help-block text-danger">
+      <ng-container *ngIf="isStateNotValid()">
+        <span *ngIf="state.errors.required && (state.dirty || state.touched)">
+          This field is required
+        </span>
+        <span
+        *ngIf="state.errors.invalidFormat && (state.dirty || state.touched)"
+        >
+        {{ "This format is invalid" }}
+      </span>
+      <!-- <span
+        *ngIf="
+          state.errors.invalidCharacters && (state.dirty || state.touched)
+        "
+      >
+        {{ "This format is invalid" }}
+      </span> -->
+        <!-- <span
+          *ngIf="state.errors.repeatAlias && (state.dirty || state.touched)"
+        >
+          {{ "common.forms.repeatAlias" }}
+        </span> -->
+      </ng-container>
+    </span>
+  </div>
+</div>

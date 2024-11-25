@@ -1,0 +1,88 @@
+.form-control {
+  font-family: var(--font);
+  font-size: 14px !important;
+  height: 38px;
+  padding: 0.500rem .75rem !important;
+}
+
+.form-control:focus {
+  border-radius: var(--bs-border-radius);
+  border-color: #dee2e6;
+  box-shadow: 0 0 6px 0 rgba(13, 110, 253, 0.25);
+}
+
+.form-select:focus {
+  border-radius: var(--bs-border-radius);
+  border-color: #dee2e6;
+  box-shadow: 0 0 6px 0 rgba(13, 110, 253, 0.25);
+}
+
+.form-control-danger {
+  // border-color: #dee2e6;
+  border-radius: var(--bs-border-radius);
+  box-shadow: 0 0 6px 0 #dc3545;
+}
+
+.form-control-danger:focus {
+  border-radius: var(--bs-border-radius);
+  box-shadow: 0 0 6px 0 #dc3545;
+}
+
+.input-group {
+  width: auto;
+}
+
+.form-select {
+  font-size: 14px;
+  height: 38px;
+}
+
+mat-select {
+  &.mat-mdc-select {
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    font-size: 14px !important;
+    height: 38px;
+    display: flex !important;
+    font-family: var(--font);
+
+    .mat-mdc-select-trigger {
+      padding: 15px;
+    }
+  }
+
+  &.mat-mdc-select:focus {
+    box-shadow: 0 0 6px 0 rgba(13, 110, 253, 0.25);
+  }
+}
+
+.ng-trigger {
+  mat-option {
+    span {
+      font-size: 14px !important;
+      font-family: var(--font) !important;
+    }
+  }
+  .mat-mdc-option-active {
+    span {
+      color: var(--black) !important;
+    }
+
+    .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after {
+      color: var(--primary) !important;
+    }
+  }
+}
+
+.mat-mdc-checkbox
+  .mdc-checkbox
+  .mdc-checkbox__native-control:enabled:checked
+  ~ .mdc-checkbox__background {
+  border-color: var(--primary) !important;
+  background: var(--primary) !important;
+}
+
+.mat-mdc-checkbox.mat-accent .mdc-checkbox--selected ~ .mdc-checkbox__ripple {
+  background: var(--primary) !important;
+}

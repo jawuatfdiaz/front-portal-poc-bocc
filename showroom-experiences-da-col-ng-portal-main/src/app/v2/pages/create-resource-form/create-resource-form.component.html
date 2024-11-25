@@ -1,0 +1,970 @@
+<div class="container container-resource-form">
+  <h1>Create resource</h1>
+
+  <div class="cont-resource-form">
+    <div class="card">
+      <div class="card-body">
+        <div class="resource-cont">
+          <mat-vertical-stepper
+            [linear]="isLinear"
+            #stepper
+            [animationDuration]="'1000'"
+          >
+            <mat-step [stepControl]="firstFormGroup" label="Basic data">
+              <!-- <ng-template matStepLabel>Basic data</ng-template> -->
+              <form [formGroup]="firstFormGroup">
+                <div class="row">
+                  <div
+                    class="col form-group"
+                    *ngIf="!removeFields.typeResource"
+                  >
+                    <app-evr-form
+                      label="Type resource *"
+                      [(state)]="firstFormGroup.controls.type"
+                    >
+                      <ng-multiselect-dropdown
+                        class="multiselect"
+                        formControlName="type"
+                        name="type"
+                        id="type"
+                        [placeholder]="'Select type resource'"
+                        [settings]="dropdownTypeResource"
+                        [data]="typeOfResourcesList"
+                        (onSelect)="onTypeResourceSelect($event)"
+                        [ngClass]="{
+                          'form-control-danger':
+                            !firstFormGroup.controls.type.valid &&
+                            (firstFormGroup.controls.type.dirty ||
+                              firstFormGroup.controls.type.touched)
+                        }"
+                      >
+                      </ng-multiselect-dropdown>
+                    </app-evr-form>
+                  </div>
+                  <!-- <div class="col" *ngIf="!removeFields.typeResource">
+                    <label for="type" class="form-label">Type resource</label>
+                    <div>
+                      <ng-multiselect-dropdown
+                        id="type"
+                        name="type"
+                        formControlName="type"
+                        [placeholder]="'Select type resource'"
+                        [settings]="dropdownTypeResource"
+                        [data]="typeOfResourcesList"
+                        (onSelect)="onTypeResourceSelect($event)"
+                        class="multiselect"
+                      >
+                      </ng-multiselect-dropdown>
+                    </div>
+                  </div> -->
+
+                  <div class="col form-group" *ngIf="!removeFields.categories">
+                    <app-evr-form
+                      label="Categories *"
+                      [(state)]="firstFormGroup.controls.categories"
+                    >
+                      <ng-multiselect-dropdown
+                        class="multiselect"
+                        formControlName="categories"
+                        name="categories"
+                        id="categories"
+                        [placeholder]="'Select category'"
+                        [settings]="dropdownTypeResource2"
+                        [data]="categoriesList"
+                        [ngClass]="{
+                          'form-control-danger':
+                            !firstFormGroup.controls.categories.valid &&
+                            (firstFormGroup.controls.categories.dirty ||
+                              firstFormGroup.controls.categories.touched)
+                        }"
+                      >
+                      </ng-multiselect-dropdown>
+                    </app-evr-form>
+                  </div>
+                  <!-- <div class="col" *ngIf="!removeFields.categories">
+                    <label for="categories" class="form-label"
+                      >Categories</label
+                    >
+                    <div>
+                      <ng-multiselect-dropdown
+                        id="categories"
+                        name="categories"
+                        formControlName="categories"
+                        [placeholder]="'Select category'"
+                        [settings]="dropdownTypeResource2"
+                        [data]="categoriesList"
+                        class="multiselect"
+                      >
+                      </ng-multiselect-dropdown>
+                    </div>
+                  </div> -->
+
+                  <div
+                    class="col form-group"
+                    *ngIf="!removeFields.subCategories"
+                  >
+                    <app-evr-form
+                      label="Subcategories"
+                      [(state)]="firstFormGroup.controls.subCategories"
+                    >
+                      <ng-multiselect-dropdown
+                        class="multiselect"
+                        formControlName="subCategories"
+                        name="subCategories"
+                        id="subCategories"
+                        [placeholder]="'Select subcategory'"
+                        [settings]="dropdownTypeResource2"
+                        [data]="subcategoriesList"
+                        [ngClass]="{
+                          'form-control-danger':
+                            !firstFormGroup.controls.subCategories.valid &&
+                            (firstFormGroup.controls.subCategories.dirty ||
+                              firstFormGroup.controls.subCategories.touched)
+                        }"
+                      >
+                      </ng-multiselect-dropdown>
+                    </app-evr-form>
+                  </div>
+                  <!-- <div class="col" *ngIf="!removeFields.subCategories">
+                    <label for="subCategories" class="form-label"
+                      >Subcategories</label
+                    >
+                    <div>
+                      <ng-multiselect-dropdown
+                        id="subCategories"
+                        name="subCategories"
+                        formControlName="subCategories"
+                        [placeholder]="'Select subcategory'"
+                        [settings]="dropdownTypeResource2"
+                        [data]="subcategoriesList"
+                        class="multiselect"
+                      >
+                      </ng-multiselect-dropdown>
+                    </div>
+                  </div> -->
+
+                  <div
+                    class="col form-group"
+                    *ngIf="!removeFields.technologies"
+                  >
+                    <app-evr-form
+                      label="Technologies"
+                      [(state)]="firstFormGroup.controls.technologies"
+                    >
+                      <ng-multiselect-dropdown
+                        class="multiselect"
+                        formControlName="technologies"
+                        name="technologies"
+                        id="technologies"
+                        [placeholder]="'Select type technology'"
+                        [settings]="dropdownTypeResource2"
+                        [data]="technologiesList"
+                        [ngClass]="{
+                          'form-control-danger':
+                            !firstFormGroup.controls.technologies.valid &&
+                            (firstFormGroup.controls.technologies.dirty ||
+                              firstFormGroup.controls.technologies.touched)
+                        }"
+                      >
+                      </ng-multiselect-dropdown>
+                    </app-evr-form>
+                  </div>
+                  <!-- <div class="col" *ngIf="!removeFields.technologies">
+                    <label for="type" class="form-label">Technologies</label>
+                    <div>
+                      <ng-multiselect-dropdown
+                        id="technologies"
+                        name="technologies"
+                        formControlName="technologies"
+                        [placeholder]="'Select type technology'"
+                        [settings]="dropdownTypeResource2"
+                        [data]="technologiesList"
+                        class="multiselect"
+                      >
+                      </ng-multiselect-dropdown>
+                    </div>
+                  </div> -->
+                </div>
+
+                <div class="row">
+                  <div class="col form-group">
+                    <app-evr-form
+                      label="Resource name *"
+                      [(state)]="firstFormGroup.controls.name"
+                    >
+                      <input
+                        class="form-control"
+                        type="text"
+                        minlength="1"
+                        maxlength="50"
+                        placeholder="Resource name"
+                        formControlName="name"
+                        id="name"
+                        [ngClass]="{
+                          'form-control-danger':
+                            !firstFormGroup.controls.name.valid &&
+                            (firstFormGroup.controls.name.dirty ||
+                              firstFormGroup.controls.name.touched)
+                        }"
+                      />
+                    </app-evr-form>
+                  </div>
+                  <!-- <div class="col">
+                    <label for="name" class="form-label">Resource name</label>
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="name"
+                        formControlName="name"
+                      />
+                    </div>
+                  </div> -->
+
+                  <div class="col form-group" *ngIf="!removeFields.monthlyCost">
+                    <app-evr-form
+                      label="Monthly cost *"
+                      [(state)]="firstFormGroup.controls.monthlyCost"
+                    >
+                      <input
+                        class="form-control"
+                        type="text"
+                        minlength="1"
+                        maxlength="50"
+                        placeholder="Monthly cost resource"
+                        formControlName="monthlyCost"
+                        id="monthlyCost"
+                        [ngClass]="{
+                          'form-control-danger':
+                            !firstFormGroup.controls.monthlyCost.valid &&
+                            (firstFormGroup.controls.monthlyCost.dirty ||
+                              firstFormGroup.controls.monthlyCost.touched)
+                        }"
+                      />
+                    </app-evr-form>
+                  </div>
+                  <!-- <div class="col" *ngIf="!removeFields.monthlyCost">
+                    <label for="monthlyCost" class="form-label"
+                      >Monthly cost</label
+                    >
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="monthlyCost"
+                        formControlName="monthlyCost"
+                      />
+                    </div>
+                  </div> -->
+
+                  <div class="col form-group">
+                    <app-evr-form
+                      label="Description *"
+                      [(state)]="firstFormGroup.controls.description"
+                    >
+                      <input
+                        class="form-control"
+                        type="text"
+                        minlength="1"
+                        maxlength="500"
+                        placeholder="Description resource"
+                        formControlName="description"
+                        id="description"
+                        [ngClass]="{
+                          'form-control-danger':
+                            !firstFormGroup.controls.description.valid &&
+                            (firstFormGroup.controls.description.dirty ||
+                              firstFormGroup.controls.description.touched)
+                        }"
+                      />
+                    </app-evr-form>
+                  </div>
+                  <!-- <div class="col">
+                    <label for="description" class="form-label"
+                      >Description</label
+                    >
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="description"
+                        formControlName="description"
+                      />
+                    </div>
+                  </div> -->
+                </div>
+
+                <div>
+                  <button class="next-button" mat-button matStepperNext>
+                    Next
+                  </button>
+                </div>
+              </form>
+            </mat-step>
+
+            <mat-step [stepControl]="secondFormGroup" label="Settings">
+              <form [formGroup]="secondFormGroup">
+                <div
+                  class="row"
+                  *ngIf="
+                    resourceTypeSelect === 'TERRAFORM_MODULE' ||
+                    resourceTypeSelect === 'ANSIBLE_PLAYBOOK' ||
+                    resourceTypeSelect === 'ANSIBLE_ROLE'
+                  "
+                >
+                  <div class="col form-group">
+                    <app-evr-form
+                      label="Repository source url"
+                      [(state)]="secondFormGroup.controls.repositoryUrl"
+                    >
+                      <input
+                        class="form-control"
+                        type="text"
+                        minlength="1"
+                        maxlength="500"
+                        placeholder="Repository source url"
+                        formControlName="repositoryUrl"
+                        id="repositoryUrl"
+                        [ngClass]="{
+                          'form-control-danger':
+                            !secondFormGroup.controls.repositoryUrl.valid &&
+                            (secondFormGroup.controls.repositoryUrl.dirty ||
+                              secondFormGroup.controls.repositoryUrl.touched)
+                        }"
+                      />
+                    </app-evr-form>
+                  </div>
+                  <!-- <div class="col">
+                    <label for="repositoryUrl" class="form-label"
+                      >Repository Source Url</label
+                    >
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="repositoryUrl"
+                        formControlName="repositoryUrl"
+                      />
+                    </div>
+                  </div> -->
+
+                  <div class="col form-group">
+                    <app-evr-form
+                      label="Repository source branch"
+                      [(state)]="
+                        secondFormGroup.controls.repositorySourceBranch
+                      "
+                    >
+                      <input
+                        class="form-control"
+                        type="text"
+                        minlength="1"
+                        maxlength="500"
+                        placeholder="Repository source branch"
+                        formControlName="repositorySourceBranch"
+                        id="repositorySourceBranch"
+                        [ngClass]="{
+                          'form-control-danger':
+                            !secondFormGroup.controls.repositorySourceBranch
+                              .valid &&
+                            (secondFormGroup.controls.repositorySourceBranch
+                              .dirty ||
+                              secondFormGroup.controls.repositorySourceBranch
+                                .touched)
+                        }"
+                      />
+                    </app-evr-form>
+                  </div>
+                  <!-- <div class="col">
+                    <label for=" repositorySourceBranch" class="form-label"
+                      >Repository Source Branch</label
+                    >
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="repositorySourceBranch"
+                        formControlName="repositorySourceBranch"
+                      />
+                    </div>
+                  </div> -->
+                </div>
+
+                <div class="row">
+                  <div class="col form-group">
+                    <app-evr-form
+                      label="Cloud provider *"
+                      [(state)]="secondFormGroup.controls.cloudProvider"
+                    >
+                      <ng-multiselect-dropdown
+                        class="multiselect"
+                        formControlName="cloudProvider"
+                        name="cloudProvider"
+                        id="cloudProvider"
+                        [placeholder]="'Select your cloud provider'"
+                        [settings]="dropdownTypeResource"
+                        [data]="cloudProvidersList"
+                        [ngClass]="{
+                          'form-control-danger':
+                            !secondFormGroup.controls.cloudProvider.valid &&
+                            (secondFormGroup.controls.cloudProvider.dirty ||
+                              secondFormGroup.controls.cloudProvider.touched)
+                        }"
+                      >
+                      </ng-multiselect-dropdown>
+                    </app-evr-form>
+                  </div>
+                  <!-- <div class="col">
+                    <label for="cloudProvider" class="form-label"
+                      >Cloud provider</label
+                    >
+                    <div>
+                      <ng-multiselect-dropdown
+                        id="cloudProvider"
+                        name="cloudProvider"
+                        formControlName="cloudProvider"
+                        [placeholder]="'Select your cloud provider'"
+                        [settings]="dropdownTypeResource"
+                        [data]="cloudProvidersList"
+                        class="multiselect"
+                      >
+                      </ng-multiselect-dropdown>
+                    </div>
+                  </div> -->
+
+                  <div
+                    class="col form-group"
+                    *ngIf="resourceTypeSelect === 'BLUEPRINT_INFRAESTRUCTURE'"
+                  >
+                    <app-evr-form
+                      label="Github user"
+                      [(state)]="secondFormGroup.controls.userGithub"
+                    >
+                      <input
+                        class="form-control"
+                        type="text"
+                        minlength="1"
+                        maxlength="100"
+                        placeholder="Github user"
+                        formControlName="userGithub"
+                        id="userGithub"
+                        [ngClass]="{
+                          'form-control-danger':
+                            !secondFormGroup.controls.userGithub.valid &&
+                            (secondFormGroup.controls.userGithub.dirty ||
+                              secondFormGroup.controls.userGithub.touched)
+                        }"
+                      />
+                    </app-evr-form>
+                  </div>
+                  <!-- <div
+                    class="col"
+                    *ngIf="resourceTypeSelect === 'BLUEPRINT_INFRAESTRUCTURE'"
+                  >
+                    <label for="userGithub" class="form-label"
+                      >Github User</label
+                    >
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="userGithub"
+                        formControlName="userGithub"
+                      />
+                    </div>
+                  </div> -->
+
+                  <ng-container
+                    *ngIf="resourceTypeSelect === 'TERRAFORM_MODULE'"
+                  >
+                    <div class="col form-group">
+                      <app-evr-form
+                        label="Terraform name"
+                        [(state)]="secondFormGroup.controls.providerName"
+                      >
+                        <ng-multiselect-dropdown
+                          class="multiselect"
+                          formControlName="providerName"
+                          name="providerName"
+                          id="providerName"
+                          [placeholder]="'Select your provider'"
+                          [settings]="dropdownTypeResource"
+                          [data]="cloudProvidersList"
+                          [ngClass]="{
+                            'form-control-danger':
+                              !secondFormGroup.controls.providerName.valid &&
+                              (secondFormGroup.controls.providerName.dirty ||
+                                secondFormGroup.controls.providerName.touched)
+                          }"
+                        >
+                        </ng-multiselect-dropdown>
+                      </app-evr-form>
+                    </div>
+                    <!-- <div
+                    class="col"
+                    *ngIf="resourceTypeSelect === 'TERRAFORM_MODULE'"
+                  >
+                    <label for="providerName" class="form-label"
+                      >Terraform name</label
+                    >
+                    <div>
+                      <ng-multiselect-dropdown
+                        id="providerName"
+                        name="providerName"
+                        formControlName="providerName"
+                        [placeholder]="'Select your provider'"
+                        [settings]="dropdownTypeResource"
+                        [data]="cloudProvidersList"
+                        class="multiselect"
+                      >
+                      </ng-multiselect-dropdown>
+                    </div>
+                  </div> -->
+
+                    <div class="col form-group">
+                      <app-evr-form
+                        label="Version"
+                        [(state)]="secondFormGroup.controls.version"
+                      >
+                        <input
+                          class="form-control"
+                          type="text"
+                          minlength="1"
+                          maxlength="20"
+                          placeholder="Version"
+                          formControlName="version"
+                          id="version"
+                          [ngClass]="{
+                            'form-control-danger':
+                              !secondFormGroup.controls.version.valid &&
+                              (secondFormGroup.controls.version.dirty ||
+                                secondFormGroup.controls.version.touched)
+                          }"
+                        />
+                      </app-evr-form>
+                    </div>
+                    <!-- <div class="col">
+                      <label for="name" class="form-label">Version</label>
+                      <div class="input-group">
+                        <input
+                          type="version"
+                          class="form-control"
+                          id="version"
+                          formControlName="version"
+                        />
+                      </div>
+                    </div> -->
+                  </ng-container>
+
+                  <div
+                    class="col form-group"
+                    *ngIf="!removeFields.deployOrchestor"
+                  >
+                    <app-evr-form
+                      label="Deployment orchestador"
+                      [(state)]="secondFormGroup.controls.deploymentOrchestador"
+                    >
+                      <ng-multiselect-dropdown
+                        class="multiselect"
+                        formControlName="deploymentOrchestador"
+                        name="deploymentOrchestador"
+                        id="deploymentOrchestador"
+                        [placeholder]="'Select your orchestador'"
+                        [settings]="dropdownTypeResource"
+                        [data]="typeOfResourcesList"
+                        (onSelect)="onTypeResourceSelect($event)"
+                        [ngClass]="{
+                          'form-control-danger':
+                            !secondFormGroup.controls.deploymentOrchestador
+                              .valid &&
+                            (secondFormGroup.controls.deploymentOrchestador
+                              .dirty ||
+                              secondFormGroup.controls.deploymentOrchestador
+                                .touched)
+                        }"
+                      >
+                      </ng-multiselect-dropdown>
+                    </app-evr-form>
+                  </div>
+
+                  <!-- <div class="col" *ngIf="!removeFields.deployOrchestor">
+                    <label for="deploymentOrchestador" class="form-label"
+                      >Deployment Orchestador</label
+                    >
+                    <div>
+                      <ng-multiselect-dropdown
+                        id="deploymentOrchestador"
+                        name="deploymentOrchestador"
+                        formControlName="deploymentOrchestador"
+                        [placeholder]="'Select your orchestador'"
+                        [settings]="dropdownTypeResource"
+                        [data]="typeOfResourcesList"
+                        (onSelect)="onTypeResourceSelect($event)"
+                        class="multiselect"
+                      >
+                      </ng-multiselect-dropdown>
+                    </div>
+                  </div> -->
+                </div>
+
+                <!-- falta -->
+                <div class="row">
+                  <div class="col parameters-container">
+                    <label for="" class="form-label">Parameters</label>
+
+                    <form
+                      [formGroup]="parametersForm"
+                      *ngIf="parameters.length"
+                    >
+                      <div formArrayName="parameters">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <label for="key" class="form-label">Key *</label>
+                          </div>
+                          <div class="col-md-3">
+                            <label for="type" class="form-label">Type *</label>
+                          </div>
+
+                          <div class="col-md-3">
+                            <label for="value" class="form-label"
+                              >Value *</label
+                            >
+                          </div>
+                        </div>
+
+                        <div
+                          class="row input-group pd-btn"
+                          *ngFor="
+                            let parameter of parameters.controls;
+                            let i = index
+                          "
+                          [formGroupName]="i"
+                        >
+                          <div class="col-md-3">
+                            <input
+                              class="form-control"
+                              type="text"
+                              id="key"
+                              formControlName="key"
+                              [ngClass]="{
+                                'form-control-danger':
+                                  parameter.get('key').invalid &&
+                                  (parameter.get('key').dirty ||
+                                    parameter.get('key').touched)
+                              }"
+                            />
+                            <div class="input-height">
+                              <app-form-alert
+                                [control]="parameter?.get('key')"
+                              ></app-form-alert>
+                            </div>
+                          </div>
+
+                          <div class="col-md-3">
+                            <mat-select
+                              formControlName="type"
+                              [ngClass]="{
+                                'form-control-danger':
+                                  parameter.get('type').invalid &&
+                                  (parameter.get('type').dirty ||
+                                    parameter.get('type').touched)
+                              }"
+                            >
+                              <mat-option value="STRING">Text</mat-option>
+                              <mat-option value="NUMBER">Number</mat-option>
+                              <mat-option value="BOOLEAN">Boolean</mat-option>
+                              <!-- <mat-option value="LIST_VALUE"
+                                >Value list</mat-option
+                              > -->
+                            </mat-select>
+                            <!-- <select
+                              class="form-select"
+                              formControlName="type"
+                              [ngClass]="{
+                                'form-control-danger':
+                                  parameter.get('type').invalid &&
+                                  (parameter.get('type').dirty ||
+                                    parameter.get('type').touched)
+                              }"
+                            >
+                              <option value="STRING">Text</option>
+                              <option value="NUMBER">Number</option>
+                              <option value="BOOLEAN">Boolean</option>
+                            </select> -->
+                            <div class="input-height">
+                              <app-form-alert
+                                [control]="parameter?.get('type')"
+                              ></app-form-alert>
+                            </div>
+                          </div>
+
+                          <div class="col-md-3">
+                            <input
+                              class="form-control"
+                              *ngIf="parameter.get('type').value === ''"
+                              [disabled]="true"
+                            />
+                            <input
+                              class="form-control"
+                              *ngIf="parameter.get('type').value === 'STRING'"
+                              formControlName="value"
+                              [ngClass]="{
+                                'form-control-danger':
+                                  parameter.get('value').invalid &&
+                                  (parameter.get('value').dirty ||
+                                    parameter.get('value').touched)
+                              }"
+                            />
+                            <input
+                              class="form-control"
+                              *ngIf="parameter.get('type').value === 'NUMBER'"
+                              formControlName="value"
+                              type="number"
+                              [ngClass]="{
+                                'form-control-danger':
+                                  parameter.get('value').invalid &&
+                                  (parameter.get('value').dirty ||
+                                    parameter.get('value').touched)
+                              }"
+                            />
+
+                            <mat-select
+                              *ngIf="parameter.get('type').value === 'BOOLEAN'"
+                              formControlName="value"
+                              [ngClass]="{
+                                'form-control-danger':
+                                  parameter.get('value').invalid &&
+                                  (parameter.get('value').dirty ||
+                                    parameter.get('value').touched)
+                              }"
+                            >
+                              <mat-option value="true">true</mat-option>
+                              <mat-option value="false">false</mat-option>
+                            </mat-select>
+                            <!-- <select
+                              class="form-select"
+                              *ngIf="parameter.get('type').value === 'BOOLEAN'"
+                              formControlName="value"
+                              [ngClass]="{
+                                'form-control-danger':
+                                  parameter.get('value').invalid &&
+                                  (parameter.get('value').dirty ||
+                                    parameter.get('value').touched)
+                              }"
+                            >
+                              <option value="true">Verdadero</option>
+                              <option value="false">Falso</option>
+                            </select> -->
+
+                            <div
+                              class="col"
+                              *ngIf="
+                                parameter.get('type').value === 'LIST_VALUE'
+                              "
+                            >
+                              <div>
+                                <tag-input
+                                  class="tag-input"
+                                  formControlName="value"
+                                  [theme]="'custom-theme'"
+                                  [secondaryPlaceholder]="'Add value'"
+                                  placeholder=" + Value"
+                                  [ngClass]="{
+                                    'form-control-danger':
+                                      parameter.get('value').invalid &&
+                                      (parameter.get('value').dirty ||
+                                        parameter.get('value').touched)
+                                  }"
+                                ></tag-input>
+                              </div>
+                            </div>
+
+                            <div class="input-height">
+                              <app-form-alert
+                                [control]="parameter?.get('value')"
+                              ></app-form-alert>
+                            </div>
+                          </div>
+
+                          <div class="col">
+                            <div class="cont-options">
+                              <div>
+                                <!-- <input
+                                  type="checkbox"
+                                  formControlName="required"
+                                />
+                                <span> Required</span> -->
+                                <mat-checkbox
+                                  class="example-margin"
+                                  formControlName="required"
+                                  >Required</mat-checkbox
+                                >
+                              </div>
+                              <button (click)="deleteParameter(i)">
+                                <span class="material-symbols-outlined">
+                                  delete
+                                </span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+
+                    <div>
+                      <button (click)="addParameter()">+ Parameter</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pd-top">
+                  <button class="back-button" mat-button matStepperPrevious>
+                    Back
+                  </button>
+                  <button class="next-button" mat-button matStepperNext>
+                    Next
+                  </button>
+                </div>
+              </form>
+            </mat-step>
+
+            <mat-step [stepControl]="linksForm" label="Fill documentation">
+              <form [formGroup]="linksForm">
+                <div class="row" *ngIf="links?.length">
+                  <div class="col-md-2 col-xs-2">
+                    <label for="type" class="form-label">Type link *</label>
+                  </div>
+                  <div class="col">
+                    <label for="value" class="form-label"
+                      >Media resource link *</label
+                    >
+                  </div>
+                </div>
+                <div formArrayName="links">
+                  <div
+                    class="row pd-btn"
+                    *ngFor="let link of links.controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <div class="col-md-2 col-xs-2">
+                      <mat-select
+                        formControlName="type"
+                        [ngClass]="{
+                          'form-control-danger':
+                            link.get('type').invalid &&
+                            (link.get('type').dirty || link.get('type').touched)
+                        }"
+                      >
+                        <mat-option value="DOCUMENTATION">Text</mat-option>
+                        <mat-option value="IMAGE">Image</mat-option>
+                      </mat-select>
+
+                      <!-- <select
+                        class="form-select"
+                        formControlName="type"
+                        [ngClass]="{
+                          'form-control-danger':
+                            link.get('type').invalid &&
+                            (link.get('type').dirty || link.get('type').touched)
+                        }"
+                      >
+                        <option value="DOCUMENTATION" default>Text</option>
+                        <option value="IMAGE">Image</option>
+                      </select> -->
+                      <div class="input-height">
+                        <app-form-alert
+                          [control]="link?.get('type')"
+                        ></app-form-alert>
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <input
+                        *ngIf="link.get('type').value === ''"
+                        type="text"
+                        class="form-control"
+                        [disabled]="true"
+                      />
+                      <input
+                        *ngIf="link.get('type').value === 'DOCUMENTATION'"
+                        type="text"
+                        class="form-control"
+                        formControlName="value"
+                        placeholder="Documentation Value"
+                        [ngClass]="{
+                          'form-control-danger':
+                            link.get('value').invalid &&
+                            (link.get('value').dirty ||
+                              link.get('value').touched)
+                        }"
+                      />
+                      <input
+                        *ngIf="link.get('type').value === 'IMAGE'"
+                        type="file"
+                        class="form-control"
+                        formControlName="value"
+                        accept="image/*"
+                        [ngClass]="{
+                          'form-control-danger':
+                            link.get('value').invalid &&
+                            (link.get('value').dirty ||
+                              link.get('value').touched)
+                        }"
+                      />
+                      <div class="input-height">
+                        <app-form-alert
+                          [control]="link?.get('value')"
+                        ></app-form-alert>
+                      </div>
+                    </div>
+
+                    <div class="col-md-1 col-xs-1">
+                      <div class="cont-options">
+                        <button (click)="deleteLink(i)">
+                          <span class="material-symbols-outlined">
+                            delete
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <div class="row" [ngClass]="{ 'mg-top': !links?.length }">
+                <div>
+                  <button class="add-link" (click)="addLink()">+ Link</button>
+                </div>
+              </div>
+
+              <div class="btn-footer pd-top">
+                <button class="back-button" mat-button matStepperPrevious>
+                  Back
+                </button>
+
+                <div class="next-button-wrapper">
+                  <button
+                    class="next-button fix"
+                    mat-button
+                    matStepperNext
+                    (click)="createResource()"
+                    [disabled]="
+                      !secondFormGroup.valid ||
+                      !firstFormGroup.valid ||
+                      !parametersForm.valid ||
+                      !linksForm.valid
+                    "
+                  >
+                    Create resource
+                  </button>
+                </div>
+
+                <div *ngIf="isLoading" class="loader"></div>
+              </div>
+            </mat-step>
+          </mat-vertical-stepper>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

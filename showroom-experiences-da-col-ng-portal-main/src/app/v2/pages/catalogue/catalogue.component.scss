@@ -1,0 +1,171 @@
+// @import "../../../../../node_modules/ngx-chips/core/styles/core/core.scss";
+
+.container-catalog {
+  // height: 100%;
+  overflow: hidden;
+  position: relative;
+  // background: var(--white);
+  padding-bottom: 10px;
+
+  h1 {
+    font-family: var(--font);
+    font-weight: 700;
+    font-size: 1.5em;
+    padding-top: 2%;
+    margin-bottom: 2%;
+  }
+
+  .cont-catalogue {
+    // margin-top: 20px;
+    margin: 20px 0;
+    height: 64%;
+    position: relative;
+    .card {
+      height: 100%;
+      .card-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        // align-items: flex-start;
+        // cursor: pointer;
+        button {
+          border: 0;
+          border-radius: 3px;
+          padding: 2px 2px;
+          height: 28px;
+          &.active {
+            background-color: var(--primary);
+            color: var(--white);
+          }
+        }
+        .views {
+          display: flex; 
+          gap: 5px;
+        }
+      }
+      .card-body {
+        overflow: hidden;
+        overflow-y: scroll;
+        // height: 15rem;
+      }
+    }
+  }
+
+  .resource-cont {
+    position: relative;
+    display: block;
+    width: 100%;
+
+    .action-container {
+      span {
+        cursor: pointer;
+      }
+    }
+  }
+  .resource {
+    display: grid;
+    grid-template-columns: 40% 60%;
+
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid rgb(0 0 0 / 18%);
+
+    &:last-child {
+      border-bottom: 1px solid transparent;
+      margin-bottom: 0em;
+    }
+    .cont-img {
+      background: var(--white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        color: #6c757d;
+        font-size: 6em;
+      }
+      img {
+        width: 100%;
+      }
+    }
+    .container-info {
+      padding-left: 1em;
+    }
+
+    .info-header {
+      display: grid;
+      grid-template-columns: 80% auto;
+      justify-content: space-between;
+      .name {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        h3 {
+          display: block;
+          font-size: 20px;
+          font-weight: 600;
+          font-family: var(--font);
+          overflow: hidden;
+          height: 30px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          width: 100%;
+          margin: 0;
+        }
+      }
+      .owner {
+        font-family: var(--font);
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--black);
+      }
+      .status {
+        font-size: 14px;
+        color: var(--primary);
+        font-weight: 600;
+        font-family: var(--font);
+        letter-spacing: 0.2px;
+        text-transform: uppercase;
+      }
+    }
+
+    .cont-desc {
+      margin-top: 1em;
+      margin-bottom: 1em;
+      height: 85px; /* Altura fija del contenedor */
+      overflow: hidden; /* Oculta el contenido que se desborda */
+
+      p {
+        font-size: 14px;
+        color: var(--black);
+        font-weight: 400;
+        font-family: var(--font);
+        height: 100%;
+        display: -webkit-box; /* Establece el modelo de caja flexible de estilo antiguo */
+        -webkit-box-orient: vertical; /* Establece la dirección de la caja flexible */
+        overflow: hidden; /* Oculta el contenido que se desborda */
+        text-overflow: ellipsis; /* Agrega el efecto de elipsis */
+        -webkit-line-clamp: 4; /* Limita el número de líneas */
+        margin: 0;
+      }
+    }
+
+    .container-butt {
+      display: flex;
+      justify-content: flex-end;
+      button {
+        background: transparent;
+        border: 0;
+        border: 1px solid var(--primary);
+        border-radius: 8px;
+        color: var(--primary);
+        padding: 7px 5px;
+        font-family: var(--font);
+        font-size: 12px;
+        font-weight: 600;
+      }
+    }
+  }
+}

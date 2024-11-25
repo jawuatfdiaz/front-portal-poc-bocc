@@ -1,0 +1,118 @@
+<div class="container-filter">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Select your filters</h5>
+      <div class="form-container">
+        <div class="row btt-padding">
+          <div class="col" *ngIf="!removeFields.name">
+            <label for="name" class="form-label">Resource name</label>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                [(ngModel)]="name"
+              />
+            </div>
+          </div>
+
+          <div class="col" *ngIf="!removeFields.typeResource">
+            <label for="type" class="form-label">Type resource</label>
+            <div [formGroup]="myFormFilters">
+              <ng-multiselect-dropdown
+                id="type"
+                name="type"
+                formControlName="type"
+                [placeholder]="'Select type resource'"
+                [settings]="dropdownTypeResource"
+                [data]="typeOfResourcesList"
+                [disabled]="disabled"
+                class="multiselect"
+              >
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+
+          <div class="col" *ngIf="!removeFields.categories">
+            <label for="Categories" class="form-label">Categories</label>
+            <div [formGroup]="myFormFilters">
+              <ng-multiselect-dropdown
+                id="categories"
+                name="categories"
+                formControlName="category"
+                [placeholder]="'Select category'"
+                [settings]="dropdownTypeResource"
+                [data]="categoriesList"
+                [disabled]="disabled"
+                class="multiselect"
+              >
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+
+          <div class="col" *ngIf="!removeFields.subCategories">
+            <label for="subCategories" class="form-label">Subcategories</label>
+            <div [formGroup]="myFormFilters">
+              <ng-multiselect-dropdown
+                id="subCategories"
+                name="subCategories"
+                formControlName="subCategory"
+                [placeholder]="'Select subcategory'"
+                [settings]="dropdownTypeResource"
+                [data]="subcategoriesList"
+                [disabled]="disabled"
+                class="multiselect"
+              >
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-between">
+          <div class="col">
+            <div class="row">
+              <div class="col" *ngIf="!removeFields.technologies">
+                <label for="typeResource" class="form-label"
+                  >Technologies</label
+                >
+                <div [formGroup]="myFormFilters">
+                  <ng-multiselect-dropdown
+                    id="technologies"
+                    name="technologies"
+                    formControlName="technologies"
+                    [placeholder]="'Select technology'"
+                    [settings]="dropdownTypeResource"
+                    [data]="technologiesList"
+                    [disabled]="disabled"
+                    class="multiselect"
+                  >
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+
+              <!-- <div class="col" *ngIf="!removeFields.labels">
+                <label for="name" class="form-label">Labels</label>
+                <div>
+                  <tag-input
+                    class="tag-input"
+                    [(ngModel)]="items"
+                    [theme]="'custom-theme'"
+                    [secondaryPlaceholder]="'Add label'"
+                    placeholder=" + Label"
+                  ></tag-input>
+                </div>
+              </div> -->
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="container-but">
+              <button class="btn-primary btn-whidth" (click)="filterView()">
+                Filter
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
